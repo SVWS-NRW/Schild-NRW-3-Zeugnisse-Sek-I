@@ -1,4 +1,4 @@
-object Report: TppReport
+object RepOrt: TppReport
   AutoStop = False
   DataPipeline = dmPipelines.Schueler
   PrinterSetup.BinName = 'Default'
@@ -16,8 +16,8 @@ object Report: TppReport
   PrinterSetup.PaperSize = 9
   SaveAsTemplate = True
   Template.FileName = 
-    'C:\SchILD-NRW\SchILD-Reports\GitHub\Schild-NRW-Zeugnisse-Sek1\HS' +
-    '\Anlage 14 - Ueberweisungszeugnis.rtm'
+    'C:\SVWS-Arbeitsverzeichnis\Schild-Reports\GitHub\Schild-NRW-3-Ze' +
+    'ugnisse-Sek-I\HS\Anlage 14 - Ueberweisungszeugnis.rtm'
   Template.Format = ftASCII
   Units = utScreenPixels
   AllowPrintToArchive = True
@@ -27,6 +27,17 @@ object Report: TppReport
   DeviceType = 'Screen'
   DefaultFileDeviceType = 'PDF'
   EmailSettings.ReportFormat = 'PDF'
+  EmailSettings.ConnectionSettings.MailService = 'SMTP'
+  EmailSettings.ConnectionSettings.WebMail.GmailSettings.OAuth2.AuthStorage = [oasAccessToken, oasRefreshToken, oasEncryptTokens]
+  EmailSettings.ConnectionSettings.WebMail.GmailSettings.OAuth2.RedirectURI = 'http://localhost'
+  EmailSettings.ConnectionSettings.WebMail.GmailSettings.OAuth2.RedirectPort = 0
+  EmailSettings.ConnectionSettings.WebMail.GmailSettings.OAuth2.RefreshTokenLifeSpan = 365
+  EmailSettings.ConnectionSettings.WebMail.Outlook365Settings.OAuth2.AuthStorage = [oasAccessToken, oasRefreshToken, oasEncryptTokens]
+  EmailSettings.ConnectionSettings.WebMail.Outlook365Settings.OAuth2.RedirectURI = 'http://localhost'
+  EmailSettings.ConnectionSettings.WebMail.Outlook365Settings.OAuth2.RedirectPort = 0
+  EmailSettings.ConnectionSettings.WebMail.Outlook365Settings.OAuth2.RefreshTokenLifeSpan = 365
+  EmailSettings.ConnectionSettings.EnableMultiPlugin = False
+  EmailSettings.ConnectionSettings.ConnectionStatusInfo = [csiStatusBar]
   EmailSettings.DeleteFile = False
   EmailSettings.Enabled = True
   LanguageID = 'Default'
@@ -38,24 +49,37 @@ object Report: TppReport
   ThumbnailSettings.Enabled = True
   ThumbnailSettings.Visible = True
   ThumbnailSettings.DeadSpace = 30
+  ThumbnailSettings.PageHighlight.Width = 3
+  ThumbnailSettings.ThumbnailSize = tsSmall
   PDFSettings.EmbedFontOptions = [efUseSubset]
   PDFSettings.EncryptSettings.AllowCopy = True
   PDFSettings.EncryptSettings.AllowInteract = True
   PDFSettings.EncryptSettings.AllowModify = True
   PDFSettings.EncryptSettings.AllowPrint = True
+  PDFSettings.EncryptSettings.AllowExtract = True
+  PDFSettings.EncryptSettings.AllowAssemble = True
+  PDFSettings.EncryptSettings.AllowQualityPrint = True
   PDFSettings.EncryptSettings.Enabled = False
   PDFSettings.EncryptSettings.KeyLength = kl40Bit
+  PDFSettings.EncryptSettings.EncryptionType = etRC4
+  PDFSettings.DigitalSignatureSettings.SignPDF = False
   PDFSettings.FontEncoding = feUnicode
   PDFSettings.ImageCompressionLevel = 90
-  PDFSettings.PDFA = True
+  PDFSettings.PDFAFormat = pafPDFA1
   PDFSettings.ScaleImages = False
-  PreviewFormSettings.ZoomSetting = zs100Percent
+  PDFSettings.Layers = False
+  PDFSettings.Outline = False
+  PreviewFormSettings.PageBorder.mmPadding = 0
   PreviewFormSettings.SinglePageOnly = True
+  PreviewFormSettings.ZoomSetting = zs100Percent
+  RTFSettings.AppName = 'ReportBuilder'
+  RTFSettings.Author = 'ReportBuilder'
   RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
   RTFSettings.DefaultFont.Color = clWindowText
   RTFSettings.DefaultFont.Height = -13
   RTFSettings.DefaultFont.Name = 'Arial'
   RTFSettings.DefaultFont.Style = []
+  RTFSettings.Title = 'Report'
   TextFileName = '($MyDocuments)\Report.pdf'
   TextSearchSettings.DefaultString = '<Suchtext>'
   TextSearchSettings.Enabled = False
@@ -63,19 +87,38 @@ object Report: TppReport
   XLSSettings.Author = 'ReportBuilder'
   XLSSettings.Subject = 'Report'
   XLSSettings.Title = 'Report'
+  XLSSettings.WorksheetName = 'Report'
+  CloudDriveSettings.DropBoxSettings.OAuth2.AuthStorage = [oasAccessToken, oasRefreshToken, oasEncryptTokens]
+  CloudDriveSettings.DropBoxSettings.OAuth2.RedirectURI = 'http://localhost'
+  CloudDriveSettings.DropBoxSettings.OAuth2.RedirectPort = 0
+  CloudDriveSettings.DropBoxSettings.OAuth2.RefreshTokenLifeSpan = 365
+  CloudDriveSettings.DropBoxSettings.DirectorySupport = True
+  CloudDriveSettings.DropBoxSettings.SharedResources = True
+  CloudDriveSettings.GoogleDriveSettings.OAuth2.AuthStorage = [oasAccessToken, oasRefreshToken, oasEncryptTokens]
+  CloudDriveSettings.GoogleDriveSettings.OAuth2.RedirectURI = 'http://localhost'
+  CloudDriveSettings.GoogleDriveSettings.OAuth2.RedirectPort = 0
+  CloudDriveSettings.GoogleDriveSettings.OAuth2.RefreshTokenLifeSpan = 365
+  CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
+  CloudDriveSettings.GoogleDriveSettings.SharedResources = False
+  CloudDriveSettings.OneDriveSettings.OAuth2.AuthStorage = [oasAccessToken, oasRefreshToken, oasEncryptTokens]
+  CloudDriveSettings.OneDriveSettings.OAuth2.RedirectURI = 'http://localhost'
+  CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
+  CloudDriveSettings.OneDriveSettings.OAuth2.RefreshTokenLifeSpan = 365
+  CloudDriveSettings.OneDriveSettings.DirectorySupport = True
+  CloudDriveSettings.OneDriveSettings.SharedResources = True
   Left = 128
   Top = 8
-  Version = '15.05'
+  Version = '23.02'
   mmColumnWidth = 0
   DataPipelineName = 'Schueler'
   object ppDetailBand2: TppDetailBand
-    Background1.Brush.Style = bsClear
-    Background2.Brush.Style = bsClear
+    Border.mmPadding = 0
     PrintHeight = phDynamic
     mmBottomOffset = 0
     mmHeight = 10319
     mmPrintPosition = 0
     object ppSubReport1: TppSubReport
+      DesignLayer = ppDesignLayer1
       UserName = 'Seite1'
       ExpandAll = False
       NewPrintJob = False
@@ -109,16 +152,16 @@ object Report: TppReport
         Template.DatabaseSettings.Name = '(Anl 10) Ueberweisung HS Seite1'
         Template.Format = ftASCII
         Units = utScreenPixels
-        Version = '15.05'
+        Version = '23.02'
         mmColumnWidth = 0
         object ppDetailBand3: TppDetailBand
-          Background1.Brush.Style = bsClear
-          Background2.Brush.Style = bsClear
+          Border.mmPadding = 0
           PrintHeight = phDynamic
           mmBottomOffset = 0
           mmHeight = 297128
           mmPrintPosition = 0
           object ppSubReport32: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_Schulkopf'
             ExpandAll = False
             NewPrintJob = False
@@ -155,18 +198,19 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               DataPipelineName = 'EigeneSchule'
               object ppDetailBand31: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 31750
                 mmPrintPosition = 0
                 object ppDBText34: TppDBText
+                  DesignLayer = ppDesignLayer2
                   UserName = 'DBTeBezeichnung1'
+                  Border.mmPadding = 0
                   DataField = 'Bezeichnung1'
                   DataPipeline = dmPipelines.EigeneSchule
                   Font.Charset = DEFAULT_CHARSET
@@ -185,8 +229,10 @@ object Report: TppReport
                   LayerName = PageLayer5
                 end
                 object ppMemo1: TppMemo
+                  DesignLayer = ppDesignLayer2
                   UserName = 'MemoWeitereBezeichnungen'
                   KeepTogether = True
+                  Border.mmPadding = 0
                   Caption = 'MemoWeitereBezeichnungen'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -211,6 +257,7 @@ object Report: TppReport
                   mmLeading = 0
                 end
                 object ppRegion1: TppRegion
+                  DesignLayer = ppDesignLayer2
                   UserName = 'RegionSchulNr'
                   KeepTogether = True
                   Brush.Style = bsClear
@@ -229,8 +276,10 @@ object Report: TppReport
                   mmStopPosition = 0
                   mmMinHeight = 0
                   object ppDBText36: TppDBText
+                    DesignLayer = ppDesignLayer2
                     UserName = 'DBTe_SchulNr'
                     AutoSize = True
+                    Border.mmPadding = 0
                     DataField = 'SchulNr'
                     DataPipeline = dmPipelines.EigeneSchule
                     Font.Charset = DEFAULT_CHARSET
@@ -250,14 +299,18 @@ object Report: TppReport
                   end
                 end
                 object ppDBImage1: TppDBImage
+                  DesignLayer = ppDesignLayer2
                   UserName = 'DBImageSchullogo'
                   AlignHorizontal = ahLeft
                   AlignVertical = avTop
                   MaintainAspectRatio = True
+                  RotationAngle = 0
                   Stretch = True
+                  Border.mmPadding = 0
                   DataField = 'SchulLogo'
                   DataPipeline = dmPipelines.EigeneSchule
                   GraphicType = 'AutoDetect'
+                  OnGetPicture = ReportImageOnGetPicture
                   ParentDataPipeline = False
                   DataPipelineName = 'EigeneSchule'
                   mmHeight = 31750
@@ -322,6 +375,7 @@ object Report: TppReport
             end
           end
           object ppSubReport44: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_GebDaten_Schulbesuch_Schulpflicht'
             ExpandAll = False
             NewPrintJob = False
@@ -357,18 +411,19 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppDetailBand47: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 11906
                 mmPrintPosition = 0
                 object ppMemo2: TppMemo
+                  DesignLayer = ppDesignLayer50
                   UserName = 'Memo_Laufbahn'
                   ForceJustifyLastLine = True
+                  Border.mmPadding = 0
                   Caption = 'Memo_Laufbahn'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -392,7 +447,9 @@ object Report: TppReport
                   mmLeading = 0
                 end
                 object ppLine2: TppLine
+                  DesignLayer = ppDesignLayer50
                   UserName = 'Line1'
+                  Border.mmPadding = 0
                   Position = lpBottom
                   Weight = 0.750000000000000000
                   mmHeight = 2114
@@ -451,6 +508,7 @@ object Report: TppReport
             end
           end
           object ppSubReport7: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_Leistungen'
             ExpandAll = False
             NewPrintJob = False
@@ -484,16 +542,16 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppDetailBand4: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 37306
                 mmPrintPosition = 0
                 object ppSubReport6: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_RL'
                   ExpandAll = False
                   NewPrintJob = False
@@ -529,18 +587,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plReligion'
                     object ppDetailBand7: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText22: TppDBText
+                        DesignLayer = ppDesignLayer25
                         UserName = 'DBTeNote_RL'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plReligion
@@ -559,8 +618,10 @@ object Report: TppReport
                         LayerName = Foreground22
                       end
                       object ppDBText12: TppDBText
+                        DesignLayer = ppDesignLayer25
                         UserName = 'DBTeFach_RL'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plReligion
                         Font.Charset = DEFAULT_CHARSET
@@ -579,13 +640,17 @@ object Report: TppReport
                         LayerName = Foreground22
                       end
                       object ppLabel27: TppLabel
+                        DesignLayer = ppDesignLayer25
                         UserName = 'La_HaF_RL'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -624,6 +689,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport8: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_D'
                   ExpandAll = False
                   NewPrintJob = False
@@ -660,18 +726,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plDeutsch'
                     object ppDetailBand9: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText24: TppDBText
+                        DesignLayer = ppDesignLayer26
                         UserName = 'DBTeNote_D'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plDeutsch
@@ -690,8 +757,10 @@ object Report: TppReport
                         LayerName = Foreground23
                       end
                       object ppDBText14: TppDBText
+                        DesignLayer = ppDesignLayer26
                         UserName = 'DBTeFach_D'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plDeutsch
                         Font.Charset = DEFAULT_CHARSET
@@ -710,13 +779,17 @@ object Report: TppReport
                         LayerName = Foreground23
                       end
                       object ppLabel38: TppLabel
+                        DesignLayer = ppDesignLayer26
                         UserName = 'La_HaF_D'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -755,6 +828,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport18: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_GL'
                   ExpandAll = False
                   NewPrintJob = False
@@ -790,16 +864,16 @@ object Report: TppReport
                     Template.DatabaseSettings.Name = 'Sub GL2'
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     object ppDetailBand21: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       PrintHeight = phDynamic
                       mmBottomOffset = 0
                       mmHeight = 13229
                       mmPrintPosition = 0
                       object ppSubReport30: TppSubReport
+                        DesignLayer = ppDesignLayer38
                         UserName = 'SubReport_GL_Lb'
                         ExpandAll = False
                         NewPrintJob = False
@@ -837,18 +911,19 @@ object Report: TppReport
                           Template.DatabaseSettings.Name = 'Sub GL1'
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'plGesellschaftslehre'
                           object ppDetailBand26: TppDetailBand
                             Visible = False
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText6: TppDBText
+                              DesignLayer = ppDesignLayer12
                               UserName = 'DBTeNote_GL_Lb'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plGesellschaftslehre
@@ -867,13 +942,17 @@ object Report: TppReport
                               LayerName = PageLayer3
                             end
                             object ppLabel21: TppLabel
+                              DesignLayer = ppDesignLayer12
                               UserName = 'LaGesellschaftslehre_Lb'
+                              Border.mmPadding = 0
                               Caption = 'Gesellschaftslehre'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clWindowText
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -883,13 +962,17 @@ object Report: TppReport
                               LayerName = PageLayer3
                             end
                             object ppLabel25: TppLabel
+                              DesignLayer = ppDesignLayer12
                               UserName = 'La_HaF_GL_Lb'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -900,18 +983,22 @@ object Report: TppReport
                             end
                           end
                           object ppSummaryBand4: TppSummaryBand
-                            Background.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 0
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppLabel50: TppLabel
+                              DesignLayer = ppDesignLayer12
                               UserName = 'LaGesellschaftslehre2'
+                              Border.mmPadding = 0
                               Caption = 'Gesellschaftslehre'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clWindowText
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -980,6 +1067,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport20: TppSubReport
+                        DesignLayer = ppDesignLayer38
                         UserName = 'SubReport_GL_Fa'
                         ExpandAll = False
                         NewPrintJob = False
@@ -1018,17 +1106,18 @@ object Report: TppReport
                           Template.DatabaseSettings.Name = 'Sub GL2'
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'plGesellschaftslehre'
                           object ppDetailBand25: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText8: TppDBText
+                              DesignLayer = ppDesignLayer22
                               UserName = 'DBTeNote_GL_Fa'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plGesellschaftslehre
@@ -1047,8 +1136,10 @@ object Report: TppReport
                               LayerName = PageLayer4
                             end
                             object ppDBText33: TppDBText
+                              DesignLayer = ppDesignLayer22
                               UserName = 'DBTeFach_GL_Fa'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.plGesellschaftslehre
                               Font.Charset = DEFAULT_CHARSET
@@ -1067,13 +1158,17 @@ object Report: TppReport
                               LayerName = PageLayer4
                             end
                             object ppLabel58: TppLabel
+                              DesignLayer = ppDesignLayer22
                               UserName = 'La_HaF_GL_Fa'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -1134,6 +1229,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport4: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_M'
                   ExpandAll = False
                   NewPrintJob = False
@@ -1170,18 +1266,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plMathematik'
                     object ppDetailBand5: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText20: TppDBText
+                        DesignLayer = ppDesignLayer24
                         UserName = 'DBTeNote_M'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plMathematik
@@ -1200,8 +1297,10 @@ object Report: TppReport
                         LayerName = Foreground21
                       end
                       object ppDBText10: TppDBText
+                        DesignLayer = ppDesignLayer24
                         UserName = 'DBTeFach_M'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plMathematik
                         Font.Charset = DEFAULT_CHARSET
@@ -1220,8 +1319,10 @@ object Report: TppReport
                         LayerName = Foreground21
                       end
                       object ppDBText31: TppDBText
+                        DesignLayer = ppDesignLayer24
                         UserName = 'DBTe_Kursart_M'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'Kursart'
                         DataPipeline = dmPipelines.plMathematik
                         Font.Charset = DEFAULT_CHARSET
@@ -1240,13 +1341,17 @@ object Report: TppReport
                         LayerName = Foreground21
                       end
                       object ppLabel46: TppLabel
+                        DesignLayer = ppDesignLayer24
                         UserName = 'La_HaF_M'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -1293,6 +1398,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport22: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_NW'
                   ExpandAll = False
                   NewPrintJob = False
@@ -1326,16 +1432,16 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     object ppDetailBand23: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       PrintHeight = phDynamic
                       mmBottomOffset = 0
                       mmHeight = 13229
                       mmPrintPosition = 0
                       object ppSubReport21: TppSubReport
+                        DesignLayer = ppDesignLayer30
                         UserName = 'SubReport_NW_Lb'
                         ExpandAll = False
                         NewPrintJob = False
@@ -1371,24 +1477,27 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'plNaturwissenschaften'
                           object ppDetailBand19: TppDetailBand
                             Visible = False
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppLabel5: TppLabel
+                              DesignLayer = ppDesignLayer10
                               UserName = 'LaNaturwissenschaften_Lb'
+                              Border.mmPadding = 0
                               Caption = 'Naturwissenschaften'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -1398,7 +1507,9 @@ object Report: TppReport
                               LayerName = Foreground6
                             end
                             object ppDBText18: TppDBText
+                              DesignLayer = ppDesignLayer10
                               UserName = 'DBTeNote_NW_Lb'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plNaturwissenschaften
@@ -1417,13 +1528,17 @@ object Report: TppReport
                               LayerName = Foreground6
                             end
                             object ppLabel6: TppLabel
+                              DesignLayer = ppDesignLayer10
                               UserName = 'La_HaF_NW_Lb'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -1434,18 +1549,22 @@ object Report: TppReport
                             end
                           end
                           object ppSummaryBand3: TppSummaryBand
-                            Background.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 0
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppLabel19: TppLabel
+                              DesignLayer = ppDesignLayer10
                               UserName = 'LaNaturwissenschaften2'
+                              Border.mmPadding = 0
                               Caption = 'Naturwissenschaften'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -1514,6 +1633,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport23: TppSubReport
+                        DesignLayer = ppDesignLayer30
                         UserName = 'SubReport_NW_Fa'
                         ExpandAll = False
                         NewPrintJob = False
@@ -1550,18 +1670,19 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 185000
                           DataPipelineName = 'plNaturwissenschaften'
                           object ppDetailBand28: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             ColumnTraversal = ctLeftToRight
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText19: TppDBText
+                              DesignLayer = ppDesignLayer28
                               UserName = 'DBTeNote_NW_Fa'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plNaturwissenschaften
@@ -1580,8 +1701,10 @@ object Report: TppReport
                               LayerName = Foreground17
                             end
                             object ppDBText21: TppDBText
+                              DesignLayer = ppDesignLayer28
                               UserName = 'DBTeFach_NW_Fa'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.plNaturwissenschaften
                               Font.Charset = DEFAULT_CHARSET
@@ -1600,13 +1723,17 @@ object Report: TppReport
                               LayerName = Foreground17
                             end
                             object ppLabel44: TppLabel
+                              DesignLayer = ppDesignLayer28
                               UserName = 'La_HaF_NW_Fa'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -1670,6 +1797,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport48: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_Informatik'
                   ExpandAll = False
                   NewPrintJob = False
@@ -1707,18 +1835,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plNaturwissenschaften'
                     object ppDetailBand30: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText37: TppDBText
+                        DesignLayer = ppDesignLayer43
                         UserName = 'DBTeNote_IF'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plNaturwissenschaften
@@ -1737,8 +1866,10 @@ object Report: TppReport
                         LayerName = PageLayer22
                       end
                       object ppDBText40: TppDBText
+                        DesignLayer = ppDesignLayer43
                         UserName = 'DBTeFach_IF'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plNaturwissenschaften
                         Font.Charset = DEFAULT_CHARSET
@@ -1757,13 +1888,17 @@ object Report: TppReport
                         LayerName = PageLayer22
                       end
                       object ppLabel35: TppLabel
+                        DesignLayer = ppDesignLayer43
                         UserName = 'La_EpUn_IF'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -1812,6 +1947,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport3: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_FS'
                   ExpandAll = False
                   NewPrintJob = False
@@ -1847,18 +1983,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plFremdsprachen'
                     object ppDetailBand29: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText9: TppDBText
+                        DesignLayer = ppDesignLayer29
                         UserName = 'DBTeNote_FS'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plFremdsprachen
@@ -1877,8 +2014,10 @@ object Report: TppReport
                         LayerName = Foreground26
                       end
                       object ppDBText11: TppDBText
+                        DesignLayer = ppDesignLayer29
                         UserName = 'DBTeFach_FS'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plFremdsprachen
                         Font.Charset = DEFAULT_CHARSET
@@ -1897,8 +2036,10 @@ object Report: TppReport
                         LayerName = Foreground26
                       end
                       object ppDBText17: TppDBText
+                        DesignLayer = ppDesignLayer29
                         UserName = 'DBTe_Kursart_FS'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'Kursart'
                         DataPipeline = dmPipelines.plFremdsprachen
                         Font.Charset = DEFAULT_CHARSET
@@ -1917,13 +2058,17 @@ object Report: TppReport
                         LayerName = Foreground26
                       end
                       object ppLabel41: TppLabel
+                        DesignLayer = ppDesignLayer29
                         UserName = 'La_HaF_FS'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -1971,6 +2116,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport24: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_AL'
                   ExpandAll = False
                   NewPrintJob = False
@@ -2006,16 +2152,16 @@ object Report: TppReport
                     Template.DatabaseSettings.Name = 'Sub GL2'
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     object ppDetailBand27: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       PrintHeight = phDynamic
                       mmBottomOffset = 0
                       mmHeight = 13229
                       mmPrintPosition = 0
                       object ppSubReport26: TppSubReport
+                        DesignLayer = ppDesignLayer34
                         UserName = 'SubReport_AL_Lb'
                         ExpandAll = False
                         NewPrintJob = False
@@ -2053,18 +2199,19 @@ object Report: TppReport
                           Template.DatabaseSettings.Name = 'Sub GL1'
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'plArbeitslehre'
                           object ppDetailBand33: TppDetailBand
                             Visible = False
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText26: TppDBText
+                              DesignLayer = ppDesignLayer11
                               UserName = 'DBTeNote_AL_Lb'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plArbeitslehre
@@ -2083,13 +2230,17 @@ object Report: TppReport
                               LayerName = PageLayer14
                             end
                             object ppLabel22: TppLabel
+                              DesignLayer = ppDesignLayer11
                               UserName = 'LaArbeitslehre_Lb'
+                              Border.mmPadding = 0
                               Caption = 'Arbeitslehre'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clWindowText
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -2099,13 +2250,17 @@ object Report: TppReport
                               LayerName = PageLayer14
                             end
                             object ppLabel32: TppLabel
+                              DesignLayer = ppDesignLayer11
                               UserName = 'La_HaF_AL_Lb'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -2116,18 +2271,22 @@ object Report: TppReport
                             end
                           end
                           object ppSummaryBand5: TppSummaryBand
-                            Background.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 0
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppLabel61: TppLabel
+                              DesignLayer = ppDesignLayer11
                               UserName = 'LaArbeitslehre2'
+                              Border.mmPadding = 0
                               Caption = 'Arbeitslehre'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clWindowText
                               Font.Name = 'Calibri'
                               Font.Size = 11
                               Font.Style = []
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 4784
                               mmLeft = 0
@@ -2204,8 +2363,8 @@ object Report: TppReport
                               69727473636861667420756E64204172626569747377656C742720656C736520
                               54657874203A3D2027417262656974736C65687265273B0D0A0D0A656E643B0D
                               0A0D436F6D706F6E656E744E616D65060F4C61417262656974736C6568726532
-                              094576656E744E616D6506094F6E47657454657874074576656E744944023508
-                              4361726574506F730102000200000000}
+                              094576656E744E616D6506094F6E47657454657874074576656E744944023500
+                              00}
                           end
                           object ppDesignLayers9: TppDesignLayers
                             object ppDesignLayer11: TppDesignLayer
@@ -2217,6 +2376,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport27: TppSubReport
+                        DesignLayer = ppDesignLayer34
                         UserName = 'SubReport_AL_Fa'
                         ExpandAll = False
                         NewPrintJob = False
@@ -2255,17 +2415,18 @@ object Report: TppReport
                           Template.DatabaseSettings.Name = 'Sub GL2'
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'plArbeitslehre'
                           object ppDetailBand35: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText35: TppDBText
+                              DesignLayer = ppDesignLayer23
                               UserName = 'DBTeNote_AL_Fa'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plArbeitslehre
@@ -2284,8 +2445,10 @@ object Report: TppReport
                               LayerName = Foreground20
                             end
                             object ppDBText28: TppDBText
+                              DesignLayer = ppDesignLayer23
                               UserName = 'DBTeFach_AL_Fa'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.plArbeitslehre
                               Font.Charset = DEFAULT_CHARSET
@@ -2304,13 +2467,17 @@ object Report: TppReport
                               LayerName = Foreground20
                             end
                             object ppLabel62: TppLabel
+                              DesignLayer = ppDesignLayer23
                               UserName = 'La_HaF_AL_Fa'
+                              Border.mmPadding = 0
                               Caption = '(1.Hj)'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clBlack
                               Font.Name = 'Calibri'
                               Font.Size = 7
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3006
                               mmLeft = 79904
@@ -2371,6 +2538,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport14: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_KuMu'
                   ExpandAll = False
                   NewPrintJob = False
@@ -2407,18 +2575,19 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plKunstUndMusik'
                     object ppDetailBand15: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText23: TppDBText
+                        DesignLayer = ppDesignLayer33
                         UserName = 'DBTeNote_KuMu'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plKunstUndMusik
@@ -2437,8 +2606,10 @@ object Report: TppReport
                         LayerName = Foreground30
                       end
                       object ppDBText25: TppDBText
+                        DesignLayer = ppDesignLayer33
                         UserName = 'DBTeFach_KuMu'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plKunstUndMusik
                         Font.Charset = DEFAULT_CHARSET
@@ -2457,13 +2628,17 @@ object Report: TppReport
                         LayerName = Foreground30
                       end
                       object ppLabel36: TppLabel
+                        DesignLayer = ppDesignLayer33
                         UserName = 'La_HaF_KuMu'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -2503,6 +2678,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport2: TppSubReport
+                  DesignLayer = ppDesignLayer7
                   UserName = 'SubReport_Sp'
                   ExpandAll = False
                   NewPrintJob = False
@@ -2540,17 +2716,18 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     DataPipelineName = 'plSport'
                     object ppDetailBand8: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText4: TppDBText
+                        DesignLayer = ppDesignLayer27
                         UserName = 'DBTeNote_Sp'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plSport
@@ -2569,8 +2746,10 @@ object Report: TppReport
                         LayerName = Foreground24
                       end
                       object ppDBText13: TppDBText
+                        DesignLayer = ppDesignLayer27
                         UserName = 'DBTeFach_Sp'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plSport
                         Font.Charset = DEFAULT_CHARSET
@@ -2589,13 +2768,17 @@ object Report: TppReport
                         LayerName = Foreground24
                       end
                       object ppLabel40: TppLabel
+                        DesignLayer = ppDesignLayer27
                         UserName = 'La_HaF_Sp'
+                        Border.mmPadding = 0
                         Caption = '(1.Hj)'
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clBlack
                         Font.Name = 'Calibri'
                         Font.Size = 7
                         Font.Style = [fsItalic]
+                        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                        FormFieldSettings.FormFieldType = fftNone
                         Transparent = True
                         mmHeight = 3006
                         mmLeft = 79904
@@ -2635,7 +2818,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand13: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -2653,6 +2836,7 @@ object Report: TppReport
             end
           end
           object ppSubReport16: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_WP'
             ExpandAll = False
             NewPrintJob = False
@@ -2691,22 +2875,26 @@ object Report: TppReport
               Template.DatabaseSettings.Name = 'Sub WPI'
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 185000
               DataPipelineName = 'plWahlpflichtbereich'
               object ppTitleBand3: TppTitleBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 5821
                 mmPrintPosition = 0
                 object ppLabel14: TppLabel
+                  DesignLayer = ppDesignLayer17
                   UserName = 'LaWP'
+                  Border.mmPadding = 0
                   Caption = 'Wahlpflichtunterricht'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 11
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 4763
                   mmLeft = 0
@@ -2717,14 +2905,15 @@ object Report: TppReport
                 end
               end
               object ppDetailBand17: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 ColumnTraversal = ctLeftToRight
                 mmBottomOffset = 529
                 mmHeight = 5821
                 mmPrintPosition = 0
                 object ppDBText1: TppDBText
+                  DesignLayer = ppDesignLayer17
                   UserName = 'DBTeNote_WP'
+                  Border.mmPadding = 0
                   Color = clSilver
                   DataField = 'NotenKlartext'
                   DataPipeline = dmPipelines.plWahlpflichtbereich
@@ -2743,8 +2932,10 @@ object Report: TppReport
                   LayerName = Foreground14
                 end
                 object ppDBText30: TppDBText
+                  DesignLayer = ppDesignLayer17
                   UserName = 'DBTe_Fach_WP'
                   AutoSize = True
+                  Border.mmPadding = 0
                   DataField = 'KursZeugnisbez'
                   DataPipeline = dmPipelines.plWahlpflichtbereich
                   Font.Charset = DEFAULT_CHARSET
@@ -2763,7 +2954,9 @@ object Report: TppReport
                   LayerName = Foreground14
                 end
                 object ppDBText3: TppDBText
+                  DesignLayer = ppDesignLayer17
                   UserName = 'DBTeKursart_WP'
+                  Border.mmPadding = 0
                   DataField = 'Kursart'
                   DataPipeline = dmPipelines.plWahlpflichtbereich
                   Font.Charset = DEFAULT_CHARSET
@@ -2782,13 +2975,17 @@ object Report: TppReport
                   LayerName = Foreground14
                 end
                 object ppLabel39: TppLabel
+                  DesignLayer = ppDesignLayer17
                   UserName = 'La_HaF_WP'
+                  Border.mmPadding = 0
                   Caption = 'La_HaF_WP'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 8
                   Font.Style = [fsItalic]
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 3440
                   mmLeft = 125942
@@ -2799,7 +2996,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand1: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -2843,6 +3040,7 @@ object Report: TppReport
             end
           end
           object ppSubReport5: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_ZUV_AG_EGS'
             ExpandAll = False
             NewPrintJob = False
@@ -2877,16 +3075,16 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppDetailBand1: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 40217
                 mmPrintPosition = 0
                 object ppRegion8: TppRegion
+                  DesignLayer = ppDesignLayer37
                   UserName = 'Region_ZUV'
                   Caption = 
                     '                                                            Regi' +
@@ -2904,13 +3102,17 @@ object Report: TppReport
                   mmStopPosition = 0
                   mmMinHeight = 0
                   object ppLabel3: TppLabel
+                    DesignLayer = ppDesignLayer37
                     UserName = 'LaZUV'
+                    Border.mmPadding = 0
                     Caption = 'Weiterer Unterricht'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Name = 'Calibri'
                     Font.Size = 11
                     Font.Style = [fsBold]
+                    FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                    FormFieldSettings.FormFieldType = fftNone
                     Transparent = True
                     mmHeight = 4763
                     mmLeft = 0
@@ -2921,6 +3123,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport35: TppSubReport
+                  DesignLayer = ppDesignLayer37
                   UserName = 'SubReport_ZUV_KMFOE'
                   ExpandAll = False
                   NewPrintJob = False
@@ -2953,16 +3156,16 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     object ppDetailBand6: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       PrintHeight = phDynamic
                       mmBottomOffset = 0
                       mmHeight = 13229
                       mmPrintPosition = 0
                       object ppSubReport9: TppSubReport
+                        DesignLayer = ppDesignLayer15
                         UserName = 'SubReport_ZUV'
                         ExpandAll = False
                         NewPrintJob = False
@@ -2984,6 +3187,7 @@ object Report: TppReport
                           DataPipeline = dmPipelines.plZUV
                           PrinterSetup.BinName = 'Default'
                           PrinterSetup.DocumentName = 'ZUV_AG.rtm'
+                          PrinterSetup.Duplex = dpNone
                           PrinterSetup.PaperName = 'A4'
                           PrinterSetup.PrinterName = 'Default'
                           PrinterSetup.SaveDeviceSettings = False
@@ -2996,18 +3200,19 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 185000
                           DataPipelineName = 'plZUV'
                           object ppDetailBand10: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             ColumnTraversal = ctLeftToRight
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText2: TppDBText
+                              DesignLayer = ppDesignLayer8
                               UserName = 'DBTeNote_ZUV'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plZUV
@@ -3026,8 +3231,10 @@ object Report: TppReport
                               LayerName = PageLayer10
                             end
                             object ppDBText5: TppDBText
+                              DesignLayer = ppDesignLayer8
                               UserName = 'DBTe_Kurs_ZUV'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.plZUV
                               Font.Charset = DEFAULT_CHARSET
@@ -3046,13 +3253,17 @@ object Report: TppReport
                               LayerName = PageLayer10
                             end
                             object ppLabel13: TppLabel
+                              DesignLayer = ppDesignLayer8
                               UserName = 'La_HaF_ZUV'
+                              Border.mmPadding = 0
                               Caption = 'La_HaF_WPI'
                               Font.Charset = DEFAULT_CHARSET
                               Font.Color = clWindowText
                               Font.Name = 'Calibri'
                               Font.Size = 8
                               Font.Style = [fsItalic]
+                              FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                              FormFieldSettings.FormFieldType = fftNone
                               Transparent = True
                               mmHeight = 3440
                               mmLeft = 159015
@@ -3108,6 +3319,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport29: TppSubReport
+                        DesignLayer = ppDesignLayer15
                         UserName = 'SubReport_KMFOE'
                         ExpandAll = False
                         NewPrintJob = False
@@ -3143,19 +3355,20 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 185000
                           DataPipelineName = 'plZUV'
                           object ppDetailBand40: TppDetailBand
                             Visible = False
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             ColumnTraversal = ctLeftToRight
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText7: TppDBText
+                              DesignLayer = ppDesignLayer9
                               UserName = 'DBTeNote_KMFOE'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.plZUV
@@ -3174,8 +3387,10 @@ object Report: TppReport
                               LayerName = PageLayer7
                             end
                             object ppDBText15: TppDBText
+                              DesignLayer = ppDesignLayer9
                               UserName = 'DBTe_Kurs_KMFOE'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.plZUV
                               Font.Charset = DEFAULT_CHARSET
@@ -3233,7 +3448,7 @@ object Report: TppReport
                       end
                     end
                     object ppSummaryBand7: TppSummaryBand
-                      Background.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       mmBottomOffset = 0
                       mmHeight = 2117
                       mmPrintPosition = 0
@@ -3259,6 +3474,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport10: TppSubReport
+                  DesignLayer = ppDesignLayer37
                   UserName = 'SubReport_EGS'
                   ExpandAll = False
                   NewPrintJob = False
@@ -3291,16 +3507,16 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 0
                     object ppDetailBand18: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       PrintHeight = phDynamic
                       mmBottomOffset = 0
                       mmHeight = 19050
                       mmPrintPosition = 0
                       object ppSubReport12: TppSubReport
+                        DesignLayer = ppDesignLayer19
                         UserName = 'SubReport_EGS1'
                         ExpandAll = False
                         NewPrintJob = False
@@ -3336,19 +3552,20 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'ppEGS'
                           object ppDetailBand11: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             PrintHeight = phDynamic
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText27: TppDBText
+                              DesignLayer = ppDesignLayer20
                               UserName = 'DBTe_Kurs_EGS1'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.ppEGS
                               Font.Charset = DEFAULT_CHARSET
@@ -3367,7 +3584,9 @@ object Report: TppReport
                               LayerName = Foreground38
                             end
                             object ppDBText29: TppDBText
+                              DesignLayer = ppDesignLayer20
                               UserName = 'DBTeNote_ESG1'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.ppEGS
@@ -3424,6 +3643,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport13: TppSubReport
+                        DesignLayer = ppDesignLayer19
                         UserName = 'SubReport_EES'
                         ExpandAll = False
                         NewPrintJob = False
@@ -3459,19 +3679,20 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'ppEGS'
                           object ppDetailBand14: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             PrintHeight = phDynamic
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText32: TppDBText
+                              DesignLayer = ppDesignLayer18
                               UserName = 'DBTe_Kurs_EES'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.ppEGS
                               Font.Charset = DEFAULT_CHARSET
@@ -3490,7 +3711,9 @@ object Report: TppReport
                               LayerName = Foreground39
                             end
                             object ppDBText39: TppDBText
+                              DesignLayer = ppDesignLayer18
                               UserName = 'DBTeNote_EES'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.ppEGS
@@ -3547,6 +3770,7 @@ object Report: TppReport
                         end
                       end
                       object ppSubReport38: TppSubReport
+                        DesignLayer = ppDesignLayer19
                         UserName = 'SubReport_EGSN'
                         ExpandAll = False
                         NewPrintJob = False
@@ -3581,19 +3805,20 @@ object Report: TppReport
                           PrinterSetup.PaperSize = 9
                           Template.Format = ftASCII
                           Units = utScreenPixels
-                          Version = '15.05'
+                          Version = '23.02'
                           mmColumnWidth = 0
                           DataPipelineName = 'ppEGS'
                           object ppDetailBand36: TppDetailBand
-                            Background1.Brush.Style = bsClear
-                            Background2.Brush.Style = bsClear
+                            Border.mmPadding = 0
                             PrintHeight = phDynamic
                             mmBottomOffset = 529
                             mmHeight = 5821
                             mmPrintPosition = 0
                             object ppDBText49: TppDBText
+                              DesignLayer = ppDesignLayer31
                               UserName = 'DBTe_Kurs_EGSN'
                               AutoSize = True
+                              Border.mmPadding = 0
                               DataField = 'UeZeugnisbezeichnung'
                               DataPipeline = dmPipelines.ppEGS
                               Font.Charset = DEFAULT_CHARSET
@@ -3612,7 +3837,9 @@ object Report: TppReport
                               LayerName = PageLayer9
                             end
                             object ppDBText50: TppDBText
+                              DesignLayer = ppDesignLayer31
                               UserName = 'DBTeNote_ESGN'
+                              Border.mmPadding = 0
                               Color = clSilver
                               DataField = 'NotenKlartext'
                               DataPipeline = dmPipelines.ppEGS
@@ -3670,7 +3897,7 @@ object Report: TppReport
                       end
                     end
                     object ppSummaryBand11: TppSummaryBand
-                      Background.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       mmBottomOffset = 0
                       mmHeight = 2117
                       mmPrintPosition = 0
@@ -3696,6 +3923,7 @@ object Report: TppReport
                   end
                 end
                 object ppRegion9: TppRegion
+                  DesignLayer = ppDesignLayer37
                   UserName = 'Region_Entf_ZUV'
                   Caption = '                              Region_Entf_ZUV'
                   Pen.Style = psClear
@@ -3712,13 +3940,17 @@ object Report: TppReport
                   mmStopPosition = 0
                   mmMinHeight = 0
                   object ppLabel16: TppLabel
+                    DesignLayer = ppDesignLayer37
                     UserName = 'LaEntfZUV'
+                    Border.mmPadding = 0
                     Caption = '- entf'#228'llt -'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Name = 'Calibri'
                     Font.Size = 11
                     Font.Style = [fsItalic]
+                    FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                    FormFieldSettings.FormFieldType = fftNone
                     Transparent = True
                     mmHeight = 4763
                     mmLeft = 0
@@ -3729,6 +3961,7 @@ object Report: TppReport
                   end
                 end
                 object ppRegion7: TppRegion
+                  DesignLayer = ppDesignLayer37
                   UserName = 'Region_AG'
                   Caption = 
                     '                                                                ' +
@@ -3747,13 +3980,17 @@ object Report: TppReport
                   mmStopPosition = 0
                   mmMinHeight = 0
                   object ppLabel4: TppLabel
+                    DesignLayer = ppDesignLayer37
                     UserName = 'LaAG'
+                    Border.mmPadding = 0
                     Caption = 'Teilnahme an Arbeitsgemeinschaften'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Name = 'Calibri'
                     Font.Size = 11
                     Font.Style = [fsBold]
+                    FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                    FormFieldSettings.FormFieldType = fftNone
                     Transparent = True
                     mmHeight = 4762
                     mmLeft = 0
@@ -3764,6 +4001,7 @@ object Report: TppReport
                   end
                 end
                 object ppSubReport34: TppSubReport
+                  DesignLayer = ppDesignLayer37
                   UserName = 'SubReport_AG'
                   ExpandAll = False
                   NewPrintJob = False
@@ -3799,19 +4037,20 @@ object Report: TppReport
                     PrinterSetup.PaperSize = 9
                     Template.Format = ftASCII
                     Units = utScreenPixels
-                    Version = '15.05'
+                    Version = '23.02'
                     mmColumnWidth = 185000
                     DataPipelineName = 'plAGGT'
                     object ppDetailBand37: TppDetailBand
-                      Background1.Brush.Style = bsClear
-                      Background2.Brush.Style = bsClear
+                      Border.mmPadding = 0
                       ColumnTraversal = ctLeftToRight
                       mmBottomOffset = 529
                       mmHeight = 5821
                       mmPrintPosition = 0
                       object ppDBText44: TppDBText
+                        DesignLayer = ppDesignLayer36
                         UserName = 'DBTe_Kurs_AG'
                         AutoSize = True
+                        Border.mmPadding = 0
                         DataField = 'UeZeugnisbezeichnung'
                         DataPipeline = dmPipelines.plAGGT
                         Font.Charset = DEFAULT_CHARSET
@@ -3830,7 +4069,9 @@ object Report: TppReport
                         LayerName = PageLayer11
                       end
                       object ppDBText38: TppDBText
+                        DesignLayer = ppDesignLayer36
                         UserName = 'DBTeNote_AG'
+                        Border.mmPadding = 0
                         Color = clSilver
                         DataField = 'NotenKlartext'
                         DataPipeline = dmPipelines.plAGGT
@@ -3879,6 +4120,7 @@ object Report: TppReport
                   end
                 end
                 object ppRegion6: TppRegion
+                  DesignLayer = ppDesignLayer37
                   UserName = 'Region_Entf_AG'
                   Caption = '                                Region_Entf_AG'
                   Pen.Style = psClear
@@ -3895,13 +4137,17 @@ object Report: TppReport
                   mmStopPosition = 0
                   mmMinHeight = 0
                   object ppLabel7: TppLabel
+                    DesignLayer = ppDesignLayer37
                     UserName = 'LaEntfAG'
+                    Border.mmPadding = 0
                     Caption = '- entf'#228'llt -'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Name = 'Calibri'
                     Font.Size = 11
                     Font.Style = [fsItalic]
+                    FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                    FormFieldSettings.FormFieldType = fftNone
                     Transparent = True
                     mmHeight = 4763
                     mmLeft = 0
@@ -3913,7 +4159,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand9: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -3979,6 +4225,7 @@ object Report: TppReport
             end
           end
           object ppSubReport11: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_ASV_Text'
             ExpandAll = False
             NewPrintJob = False
@@ -4016,22 +4263,26 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               DataPipelineName = 'plLernabschnitte'
               object ppTitleBand4: TppTitleBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 5292
                 mmPrintPosition = 0
                 object ppLabel12: TppLabel
+                  DesignLayer = ppDesignLayer13
                   UserName = 'LaASV'
+                  Border.mmPadding = 0
                   Caption = 'Angaben zum Arbeits- und Sozialverhalten'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 11
                   Font.Style = [fsBold]
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 4763
                   mmLeft = 0
@@ -4041,13 +4292,17 @@ object Report: TppReport
                   LayerName = Foreground10
                 end
                 object ppLabel9: TppLabel
+                  DesignLayer = ppDesignLayer13
                   UserName = 'La1'
+                  Border.mmPadding = 0
                   Caption = '1)'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
                   Font.Name = 'Calibri'
                   Font.Size = 6
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 2646
                   mmLeft = 68527
@@ -4058,14 +4313,15 @@ object Report: TppReport
                 end
               end
               object ppDetailBand12: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 6350
                 mmPrintPosition = 0
                 object ppMemo3: TppMemo
+                  DesignLayer = ppDesignLayer13
                   UserName = 'Memo_ASV'
+                  Border.mmPadding = 0
                   Caption = 'Memo_ASV'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -4090,7 +4346,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand2: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -4117,6 +4373,7 @@ object Report: TppReport
             end
           end
           object ppSubReport19: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_AUE'
             ExpandAll = False
             NewPrintJob = False
@@ -4152,21 +4409,25 @@ object Report: TppReport
               Template.DatabaseSettings.Name = 'Sub_AUE V4.0'
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppTitleBand1: TppTitleBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 5292
                 mmPrintPosition = 0
                 object ppLabel17: TppLabel
+                  DesignLayer = ppDesignLayer16
                   UserName = 'LaAUE'
+                  Border.mmPadding = 0
                   Caption = 'Angaben zum au'#223'erunterrichtlichen Engagement'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 11
                   Font.Style = [fsBold]
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 4763
                   mmLeft = 0
@@ -4176,13 +4437,17 @@ object Report: TppReport
                   LayerName = Foreground13
                 end
                 object ppLabel18: TppLabel
+                  DesignLayer = ppDesignLayer16
                   UserName = 'La2'
+                  Border.mmPadding = 0
                   Caption = '2)'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
                   Font.Name = 'Calibri'
                   Font.Size = 6
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 2646
                   mmLeft = 79640
@@ -4193,14 +4458,15 @@ object Report: TppReport
                 end
               end
               object ppDetailBand13: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 6350
                 mmPrintPosition = 0
                 object ppMemo4: TppMemo
+                  DesignLayer = ppDesignLayer16
                   UserName = 'Memo_AUE'
+                  Border.mmPadding = 0
                   Caption = 'Memo_AUE'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -4225,7 +4491,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand6: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -4253,6 +4519,7 @@ object Report: TppReport
             end
           end
           object ppSubReport31: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_Bem'
             ExpandAll = False
             NewPrintJob = False
@@ -4288,21 +4555,25 @@ object Report: TppReport
               Template.DatabaseSettings.Name = 'Sub_Bem V4.0'
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppTitleBand8: TppTitleBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 5292
                 mmPrintPosition = 0
                 object ppLabel20: TppLabel
+                  DesignLayer = ppDesignLayer14
                   UserName = 'LaBemerkungen'
+                  Border.mmPadding = 0
                   Caption = 'Bemerkungen'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 11
                   Font.Style = [fsBold]
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   Transparent = True
                   mmHeight = 4763
                   mmLeft = 0
@@ -4313,14 +4584,15 @@ object Report: TppReport
                 end
               end
               object ppDetailBand16: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 6350
                 mmPrintPosition = 0
                 object ppMemo5: TppMemo
+                  DesignLayer = ppDesignLayer14
                   UserName = 'Memo_Bem'
+                  Border.mmPadding = 0
                   Caption = 'Memo_Bem'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -4345,7 +4617,7 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand8: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 2117
                 mmPrintPosition = 0
@@ -4424,6 +4696,7 @@ object Report: TppReport
             end
           end
           object ppSubReport17: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_UnterschriftenDatum'
             ExpandAll = False
             NewPrintJob = False
@@ -4457,23 +4730,26 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppDetailBand24: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 27781
                 mmPrintPosition = 0
                 object ppLabel2: TppLabel
+                  DesignLayer = ppDesignLayer21
                   UserName = 'La_OrtDatum'
+                  Border.mmPadding = 0
                   Caption = 'OrtUndDatum'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
                   Font.Name = 'Calibri'
                   Font.Size = 11
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   mmHeight = 4784
                   mmLeft = 0
                   mmTop = 0
@@ -4482,13 +4758,17 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLabel37: TppLabel
+                  DesignLayer = ppDesignLayer21
                   UserName = 'LaSiegel'
+                  Border.mmPadding = 0
                   Caption = '(Siegel der Schule)'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 8
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   TextAlignment = taCentered
                   Transparent = True
                   WordWrap = True
@@ -4500,13 +4780,17 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLabel8: TppLabel
+                  DesignLayer = ppDesignLayer21
                   UserName = 'La_Schulleitung'
+                  Border.mmPadding = 0
                   Caption = 'Schulleiter/in oder Vertretung'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 9
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   TextAlignment = taCentered
                   Transparent = True
                   mmHeight = 3704
@@ -4517,13 +4801,17 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLabel26: TppLabel
+                  DesignLayer = ppDesignLayer21
                   UserName = 'La_Klassenleitung'
+                  Border.mmPadding = 0
                   Caption = 'Klassenlehrer/in'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 9
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   TextAlignment = taCentered
                   Transparent = True
                   mmHeight = 3704
@@ -4534,13 +4822,17 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLabel28: TppLabel
+                  DesignLayer = ppDesignLayer21
                   UserName = 'La_KLassenleitung_StV'
+                  Border.mmPadding = 0
                   Caption = 'Klassenlehrer/in'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clWindowText
                   Font.Name = 'Calibri'
                   Font.Size = 9
                   Font.Style = []
+                  FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+                  FormFieldSettings.FormFieldType = fftNone
                   TextAlignment = taCentered
                   Transparent = True
                   mmHeight = 3704
@@ -4551,7 +4843,9 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLine9: TppLine
+                  DesignLayer = ppDesignLayer21
                   UserName = 'Line1'
+                  Border.mmPadding = 0
                   Position = lpBottom
                   Weight = 0.750000000000000000
                   mmHeight = 2117
@@ -4562,7 +4856,9 @@ object Report: TppReport
                   LayerName = PageLayer6
                 end
                 object ppLine10: TppLine
+                  DesignLayer = ppDesignLayer21
                   UserName = 'Line8'
+                  Border.mmPadding = 0
                   Position = lpBottom
                   Weight = 0.750000000000000000
                   mmHeight = 2117
@@ -4760,6 +5056,7 @@ object Report: TppReport
             end
           end
           object ppSubReport25: TppSubReport
+            DesignLayer = ppDesignLayer3
             UserName = 'SubReport_FN1_2'
             ExpandAll = False
             NewPrintJob = False
@@ -4794,16 +5091,18 @@ object Report: TppReport
               Template.Offset = 284
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               object ppTitleBand6: TppTitleBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 8731
                 mmPrintPosition = 0
                 object ppLine4: TppLine
+                  DesignLayer = ppDesignLayer39
                   UserName = 'Line2'
+                  Border.mmPadding = 0
                   Weight = 0.750000000000000000
                   mmHeight = 2117
                   mmLeft = 0
@@ -4813,7 +5112,9 @@ object Report: TppReport
                   LayerName = PageLayer17
                 end
                 object ppMemo10: TppMemo
+                  DesignLayer = ppDesignLayer39
                   UserName = 'Memo_FN_Seite1_Text'
+                  Border.mmPadding = 0
                   Caption = 'Memo_FN_Seite1_Text'
                   CharWrap = False
                   Font.Charset = DEFAULT_CHARSET
@@ -4842,8 +5143,7 @@ object Report: TppReport
                 end
               end
               object ppDetailBand20: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 mmBottomOffset = 0
                 mmHeight = 0
                 mmPrintPosition = 0
@@ -4861,13 +5161,17 @@ object Report: TppReport
             end
           end
           object ppLabel15: TppLabel
+            DesignLayer = ppDesignLayer3
             UserName = 'LaLeistungen'
+            Border.mmPadding = 0
             Caption = 'Leistungen'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Name = 'Calibri'
             Font.Size = 16
             Font.Style = [fsBold]
+            FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+            FormFieldSettings.FormFieldType = fftNone
             Transparent = True
             mmHeight = 6879
             mmLeft = 14288
@@ -4877,13 +5181,17 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppLabel24: TppLabel
+            DesignLayer = ppDesignLayer3
             UserName = 'La_FehlStd'
+            Border.mmPadding = 0
             Caption = 'La_FehlStd'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Name = 'Calibri'
             Font.Size = 11
             Font.Style = []
+            FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+            FormFieldSettings.FormFieldType = fftNone
             Transparent = True
             mmHeight = 4763
             mmLeft = 49477
@@ -4893,13 +5201,17 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppLabel1: TppLabel
+            DesignLayer = ppDesignLayer3
             UserName = 'LaVersaemteStunden'
+            Border.mmPadding = 0
             Caption = 'Vers'#228'umte Stunden:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Name = 'Calibri'
             Font.Size = 11
             Font.Style = []
+            FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+            FormFieldSettings.FormFieldType = fftNone
             Transparent = True
             mmHeight = 4763
             mmLeft = 14817
@@ -4909,7 +5221,9 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppLine3: TppLine
+            DesignLayer = ppDesignLayer3
             UserName = 'Line2'
+            Border.mmPadding = 0
             Position = lpBottom
             Weight = 0.750000000000000000
             mmHeight = 2114
@@ -4920,13 +5234,17 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppLabel34: TppLabel
+            DesignLayer = ppDesignLayer3
             UserName = 'LaZeugnis'
+            Border.mmPadding = 0
             Caption = #220' B E R W E I S U N G S Z E U G N I S'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBlack
             Font.Name = 'Calibri'
             Font.Size = 26
             Font.Style = [fsBold]
+            FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+            FormFieldSettings.FormFieldType = fftNone
             TextAlignment = taCentered
             Transparent = True
             mmHeight = 11113
@@ -4937,8 +5255,10 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppDBText16: TppDBText
+            DesignLayer = ppDesignLayer3
             UserName = 'DBTe_Name'
             AutoSize = True
+            Border.mmPadding = 0
             DataField = 'NameVorname'
             DataPipeline = dmPipelines.Schueler
             Font.Charset = DEFAULT_CHARSET
@@ -4958,7 +5278,9 @@ object Report: TppReport
             LayerName = Foreground2
           end
           object ppLine5: TppLine
+            DesignLayer = ppDesignLayer3
             UserName = 'Line5'
+            Border.mmPadding = 0
             Position = lpBottom
             Weight = 0.750000000000000000
             mmHeight = 2117
@@ -4970,7 +5292,7 @@ object Report: TppReport
           end
         end
         object ppPageStyle1: TppPageStyle
-          Background.Brush.Style = bsClear
+          Border.mmPadding = 0
           EndPage = 0
           SinglePage = 0
           StartPage = 0
@@ -4978,12 +5300,13 @@ object Report: TppReport
           mmHeight = 296334
           mmPrintPosition = 0
           object ppShape1: TppShape
+            DesignLayer = ppDesignLayer4
             UserName = 'Shape1'
             mmHeight = 277000
             mmLeft = 10054
             mmTop = 10054
             mmWidth = 189971
-            BandType = 9
+            BandType = 10
             LayerName = PageLayer1
           end
         end
@@ -5000,13 +5323,13 @@ object Report: TppReport
           DataPipelineName = ''
           NewFile = False
           object ppGroupHeaderBand1: TppGroupHeaderBand
-            Background.Brush.Style = bsClear
+            Border.mmPadding = 0
             mmBottomOffset = 0
             mmHeight = 0
             mmPrintPosition = 0
           end
           object ppGroupFooterBand1: TppGroupFooterBand
-            Background.Brush.Style = bsClear
+            Border.mmPadding = 0
             HideWhenOneDetail = False
             mmBottomOffset = 0
             mmHeight = 0
@@ -5078,6 +5401,7 @@ object Report: TppReport
       end
     end
     object ppSubReport15: TppSubReport
+      DesignLayer = ppDesignLayer1
       UserName = 'Seite2'
       ExpandAll = False
       NewPrintJob = False
@@ -5114,17 +5438,17 @@ object Report: TppReport
         PrinterSetup.PaperSize = 9
         Template.Format = ftASCII
         Units = utScreenPixels
-        Version = '15.05'
+        Version = '23.02'
         mmColumnWidth = 0
         DataPipelineName = 'EigeneSchule'
         object ppDetailBand22: TppDetailBand
-          Background1.Brush.Style = bsClear
-          Background2.Brush.Style = bsClear
+          Border.mmPadding = 0
           PrintHeight = phDynamic
           mmBottomOffset = 0
           mmHeight = 305594
           mmPrintPosition = 0
           object ppSubReport33: TppSubReport
+            DesignLayer = ppDesignLayer5
             UserName = 'SubReport_ZeugnisInfo1'
             ExpandAll = False
             NewPrintJob = False
@@ -5160,68 +5484,71 @@ object Report: TppReport
               PrinterSetup.PaperSize = 9
               Template.Format = ftASCII
               Units = utScreenPixels
-              Version = '15.05'
+              Version = '23.02'
               mmColumnWidth = 0
               DataPipelineName = 'EigeneSchule'
               object ppDetailBand32: TppDetailBand
-                Background1.Brush.Style = bsClear
-                Background2.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 100542
                 mmPrintPosition = 0
                 object ppRichText2: TppRichText
+                  DesignLayer = ppDesignLayer35
                   UserName = 'RiTeHinweise'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
                   Font.Name = 'Calibri'
                   Font.Size = 8
                   Font.Style = []
+                  Border.mmPadding = 0
                   Caption = 'RiTeHinweise'
+                  ExportRTFAsBitmap = False
                   MailMerge = True
                   RichText = 
-                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fp' +
-                    'rq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset0 Times New Rom' +
-                    'an;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}'#13#10'{\colortb' +
-                    'l ;\red0\green0\blue0;}'#13#10'\viewkind4\uc1\pard\brdrt\brdrs\brdrw20' +
-                    '\brsp20 \nowidctlpar\ri283\qc\tqc\tx4536\tqr\tx9072\b\f0\fs14 Hi' +
-                    'nweise zum Zeugnis\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\' +
-                    'tx284\tqc\tx4536\tqr\tx9072\b0 1.\tab Zur Spalte "Bemerkungen"\p' +
-                    'ar'#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072' +
-                    ' Hier k\'#39'f6nnen eingetragen werden: \par'#13#10'\pard\nowidctlpar\fi-2' +
-                    '83\li567\ri283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 besondere Le' +
-                    'istungsnachweise wie Jugendsportabzeichen oder Schwimmzeugnis so' +
-                    'wie Angaben \'#39'fcber freiwillig besuchte Kurse (z.B. Erste Hilfe)' +
-                    '\par'#13#10'-\tab Angaben \'#39'fcber die Leistungen im herkunftssprachlic' +
-                    'hen Unterricht\par'#13#10'-\tab Angaben zur Wiederholung, Vorversetzun' +
-                    'g oder zum R\'#39'fccktritt\par'#13#10'-\tab Angaben zum Schulwechsel\par'#13 +
-                    #10'-\tab Versetzungsvermerk bei \'#39'dcberweisungs- oder Abgangszeugn' +
-                    'issen.\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx' +
-                    '4536\tqr\tx9072 2.\tab Notenstufen; Unterrichtsorganisation\par'#13 +
-                    #10'\pard\nowidctlpar\fi-283\li567\ri283\qj\tx567\tqc\tx3402\tqr\tx' +
-                    '9072 a)\tab Bei der Bewertung einzelner Sch\'#39'fclerleistungen sow' +
-                    'ie in Zeugnissen werden die folgenden Notenstufen gem\'#39'e4\'#39'df \'#39 +
-                    'a7 48 Abs. 3 Schulgesetz NRW (SchulG) zugrunde gelegt:\f1\line\f' +
-                    '0 1. sehr gut (1)\par'#13#10'\tab 2. gut (2)\par'#13#10'\tab 3. befriedigend' +
-                    ' (3)\par'#13#10'\tab 4. ausreichend (4)\par'#13#10'\tab  5. mangelhaft (5)\p' +
-                    'ar'#13#10'\tab 6. ungen\'#39'fcgend (6)\par'#13#10'b)\tab Der Unterricht in Engl' +
-                    'isch und Mathematik wird in den Klassen 7 bis 9 in Fachleistungs' +
-                    'kursen mit zwei Anspruchsh\'#39'f6hen erteilt:\par'#13#10'\tab auf der Gru' +
-                    'ndebene und der Erweiterungsebene. Der Unterricht auf der Grunde' +
-                    'bene orientiert sich an Anforderungen, die in Verbindung mit and' +
-                    'eren von den Sch\'#39'fclerinnen und Sch\'#39'fclern zu erbringenden Lei' +
-                    'stungen als Voraussetzungen f\'#39'fcr die Vergabe des Hauptschulabs' +
-                    'chlusses und des Hauptschulabschlusses nach Klasse 10 ma\'#39'dfgebe' +
-                    'nd sind. Die Anforderungen auf der Erweiterungsebene sind auf da' +
-                    's Erreichen des mittleren Schulabschlusses (Fachoberschulreife) ' +
-                    'und der Berechtigung zum Besuch der gymnasialen Oberstufe ausger' +
-                    'ichtet. In den Fachleistungskursen werden die Noten wie unter Bu' +
-                    'chstabe a ausgewiesen erteilt.\f2\fs0\par'#13#10'\pard\nowidctlpar\fi-' +
-                    '284\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072\f0\fs14 3.\tab Ab' +
-                    'schl\'#39'fcsse der Hauptschule am Ende der Klasse 9 und der Klasse ' +
-                    '10\par'#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx' +
-                    '9072 Die Hauptschule vermittelt am Ende der Klasse 9 und der Kla' +
-                    'sse 10 folgende Abschl\'#39'fcsse:\par'#13#10'\pard\nowidctlpar\fi-283\li5' +
+                    '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1031{\fonttbl{\f' +
+                    '0\fswiss\fprq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset0 Ti' +
+                    'mes New Roman;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}' +
+                    #13#10'{\colortbl ;\red0\green0\blue0;}'#13#10'{\*\generator Riched20 10.0.' +
+                    '19041}\viewkind4\uc1 '#13#10'\pard\brdrt\brdrs\brdrw20\brsp20 \nowidct' +
+                    'lpar\ri283\qc\tqc\tx4536\tqr\tx9072\b\f0\fs14 Hinweise zum Zeugn' +
+                    'is\par'#13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx45' +
+                    '36\tqr\tx9072\b0 1.\tab Zur Spalte "Bemerkungen"\par'#13#10#13#10'\pard\no' +
+                    'widctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Hier k\'#39'f6n' +
+                    'nen eingetragen werden: \par'#13#10#13#10'\pard\nowidctlpar\fi-283\li567\r' +
+                    'i283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 besondere Leistungsnac' +
+                    'hweise wie Jugendsportabzeichen oder Schwimmzeugnis sowie Angabe' +
+                    'n \'#39'fcber freiwillig besuchte Kurse (z.B. Erste Hilfe)\par'#13#10'-\ta' +
+                    'b Angaben \'#39'fcber die Leistungen im herkunftssprachlichen Unterr' +
+                    'icht\par'#13#10'-\tab Angaben zur Wiederholung, Vorversetzung oder zum' +
+                    ' R\'#39'fccktritt\par'#13#10'-\tab Angaben zum Schulwechsel\par'#13#10'-\tab Ver' +
+                    'setzungsvermerk bei \'#39'dcberweisungs- oder Abgangszeugnissen.\par' +
+                    #13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx4536\tqr' +
+                    '\tx9072 2.\tab Notenstufen; Unterrichtsorganisation\par'#13#10#13#10'\pard' +
+                    '\nowidctlpar\fi-283\li567\ri283\qj\tx567\tqc\tx3402\tqr\tx9072 a' +
+                    ')\tab Bei der Bewertung einzelner Sch\'#39'fclerleistungen sowie in ' +
+                    'Zeugnissen werden die folgenden Notenstufen gem\'#39'e4\'#39'df \'#39'a7 48 ' +
+                    'Abs. 3 Schulgesetz NRW (SchulG) zugrunde gelegt:\f1\line\f0 1. s' +
+                    'ehr gut (1)\par'#13#10'\tab 2. gut (2)\par'#13#10'\tab 3. befriedigend (3)\p' +
+                    'ar'#13#10'\tab 4. ausreichend (4)\par'#13#10'\tab  5. mangelhaft (5)\par'#13#10'\t' +
+                    'ab 6. ungen\'#39'fcgend (6)\par'#13#10'b)\tab Der Unterricht in Englisch u' +
+                    'nd Mathematik wird in den Klassen 7 bis 9 in Fachleistungskursen' +
+                    ' mit zwei Anspruchsh\'#39'f6hen erteilt:\par'#13#10'\tab auf der Grundeben' +
+                    'e und der Erweiterungsebene. Der Unterricht auf der Grundebene o' +
+                    'rientiert sich an Anforderungen, die in Verbindung mit anderen v' +
+                    'on den Sch\'#39'fclerinnen und Sch\'#39'fclern zu erbringenden Leistunge' +
+                    'n als Voraussetzungen f\'#39'fcr die Vergabe des Hauptschulabschluss' +
+                    'es und des Hauptschulabschlusses nach Klasse 10 ma\'#39'dfgebend sin' +
+                    'd. Die Anforderungen auf der Erweiterungsebene sind auf das Erre' +
+                    'ichen des mittleren Schulabschlusses (Fachoberschulreife) und de' +
+                    'r Berechtigung zum Besuch der gymnasialen Oberstufe ausgerichtet' +
+                    '. In den Fachleistungskursen werden die Noten wie unter Buchstab' +
+                    'e a ausgewiesen erteilt.\f2\fs0\par'#13#10#13#10'\pard\nowidctlpar\fi-284\' +
+                    'li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072\f0\fs14 3.\tab Abschl' +
+                    '\'#39'fcsse der Hauptschule am Ende der Klasse 9 und der Klasse 10\p' +
+                    'ar'#13#10#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx90' +
+                    '72 Die Hauptschule vermittelt am Ende der Klasse 9 und der Klass' +
+                    'e 10 folgende Abschl\'#39'fcsse:\par'#13#10#13#10'\pard\nowidctlpar\fi-283\li5' +
                     '67\ri283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 den "Hauptschulabs' +
                     'chluss" f\'#39'fcr Sch\'#39'fclerinnen und Sch\'#39'fcler, die das Ziel der ' +
                     'Klasse 9 der Hauptschule erreicht haben,\par'#13#10'-\tab den "Hauptsc' +
@@ -5234,17 +5561,17 @@ object Report: TppReport
                     'nd Sch\'#39'fcler, die das Ziel der Klasse 10 Typ B erreicht haben.\' +
                     'par'#13#10'Wer die Hauptschule nach erf\'#39'fcllter Schulpflicht verl\'#39'e4' +
                     'sst, ohne einen Abschluss erreicht zu haben, erh\'#39'e4lt ein Abgan' +
-                    'gszeugnis.\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tq' +
-                    'c\tx4536\tqr\tx9072 4.\tab Rechtsbehelfsbelehrung:\par'#13#10'\pard\no' +
-                    'widctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Gegen die E' +
-                    'ntscheidung, die Sch\'#39'fclerin oder den Sch\'#39'fcler nicht zu verse' +
-                    'tzen oder einen erreichbaren Abschluss oder eine Berechtigung ni' +
-                    'cht zu vergeben, kann innerhalb eines Monats nach Bekanntgabe de' +
-                    's Zeugnisses Widerspruch erhoben werden.\par'#13#10'Der Widerspruch is' +
-                    't bei der Schule (<Bezeichnung1>, <Strasse>, <PLZ> <Ort>) schrif' +
-                    'tlich oder zur Niederschrift zu erheben.\par'#13#10'\pard\nowidctlpar\' +
-                    'ri200\qr SNr: <SchulNr>, SForm: HS\par'#13#10'\pard\nowidctlpar\qr\cf1' +
-                    '\f3\fs16\par'#13#10'}'#13#10#0
+                    'gszeugnis.\par'#13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\' +
+                    'tqc\tx4536\tqr\tx9072 4.\tab Rechtsbehelfsbelehrung:\par'#13#10#13#10'\par' +
+                    'd\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Gegen d' +
+                    'ie Entscheidung, die Sch\'#39'fclerin oder den Sch\'#39'fcler nicht zu v' +
+                    'ersetzen oder einen erreichbaren Abschluss oder eine Berechtigun' +
+                    'g nicht zu vergeben, kann innerhalb eines Monats nach Bekanntgab' +
+                    'e des Zeugnisses Widerspruch erhoben werden.\par'#13#10'Der Widerspruc' +
+                    'h ist bei der Schule (<Bezeichnung1>, <Strasse>, <PLZ> <Ort>) sc' +
+                    'hriftlich oder zur Niederschrift zu erheben.\par'#13#10#13#10'\pard\nowidc' +
+                    'tlpar\ri200\qr SNr: <SchulNr>, SForm: HS\par'#13#10#13#10'\pard\nowidctlpa' +
+                    'r\qr\cf1\f3\fs16\par'#13#10'}'#13#10#0
                   RemoveEmptyLines = False
                   Stretch = True
                   mmHeight = 100277
@@ -5261,63 +5588,67 @@ object Report: TppReport
                 end
               end
               object ppSummaryBand10: TppSummaryBand
-                Background.Brush.Style = bsClear
+                Border.mmPadding = 0
                 PrintHeight = phDynamic
                 mmBottomOffset = 0
                 mmHeight = 100542
                 mmPrintPosition = 0
                 object ppRichText1: TppRichText
+                  DesignLayer = ppDesignLayer35
                   UserName = 'RiTeHinweise1'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
                   Font.Name = 'Calibri'
                   Font.Size = 8
                   Font.Style = []
+                  Border.mmPadding = 0
                   Caption = 'RiTeHinweise'
+                  ExportRTFAsBitmap = False
                   MailMerge = True
                   RichText = 
-                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fp' +
-                    'rq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset0 Times New Rom' +
-                    'an;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}'#13#10'{\colortb' +
-                    'l ;\red0\green0\blue0;}'#13#10'\viewkind4\uc1\pard\brdrt\brdrs\brdrw20' +
-                    '\brsp20 \nowidctlpar\ri283\qc\tqc\tx4536\tqr\tx9072\b\f0\fs14 Hi' +
-                    'nweise zum Zeugnis\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\' +
-                    'tx284\tqc\tx4536\tqr\tx9072\b0 1.\tab Zur Spalte "Bemerkungen"\p' +
-                    'ar'#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072' +
-                    ' Hier k\'#39'f6nnen eingetragen werden: \par'#13#10'\pard\nowidctlpar\fi-2' +
-                    '83\li567\ri283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 besondere Le' +
-                    'istungsnachweise wie Jugendsportabzeichen oder Schwimmzeugnis so' +
-                    'wie Angaben \'#39'fcber freiwillig besuchte Kurse (z.B. Erste Hilfe)' +
-                    '\par'#13#10'-\tab Angaben \'#39'fcber die Leistungen im herkunftssprachlic' +
-                    'hen Unterricht\par'#13#10'-\tab Angaben zur Wiederholung, Vorversetzun' +
-                    'g oder zum R\'#39'fccktritt\par'#13#10'-\tab Angaben zum Schulwechsel\par'#13 +
-                    #10'-\tab Versetzungsvermerk bei \'#39'dcberweisungs- oder Abgangszeugn' +
-                    'issen.\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx' +
-                    '4536\tqr\tx9072 2.\tab Notenstufen; Unterrichtsorganisation\par'#13 +
-                    #10'\pard\nowidctlpar\fi-283\li567\ri283\qj\tx567\tqc\tx3402\tqr\tx' +
-                    '9072 a)\tab Bei der Bewertung einzelner Sch\'#39'fclerleistungen sow' +
-                    'ie in Zeugnissen werden die folgenden Notenstufen gem\'#39'e4\'#39'df \'#39 +
-                    'a7 48 Abs. 3 Schulgesetz NRW (SchulG) zugrunde gelegt:\f1\line\f' +
-                    '0 1. sehr gut (1)\par'#13#10'\tab 2. gut (2)\par'#13#10'\tab 3. befriedigend' +
-                    ' (3)\par'#13#10'\tab 4. ausreichend (4)\par'#13#10'\tab  5. mangelhaft (5)\p' +
-                    'ar'#13#10'\tab 6. ungen\'#39'fcgend (6)\par'#13#10'b)\tab Der Unterricht in Engl' +
-                    'isch und Mathematik wird in den Klassen 7 bis 9 in Fachleistungs' +
-                    'kursen mit zwei Anspruchsh\'#39'f6hen erteilt:\par'#13#10'\tab auf der Gru' +
-                    'ndebene und der Erweiterungsebene. Der Unterricht auf der Grunde' +
-                    'bene orientiert sich an Anforderungen, die in Verbindung mit and' +
-                    'eren von den Sch\'#39'fclerinnen und Sch\'#39'fclern zu erbringenden Lei' +
-                    'stungen als Voraussetzungen f\'#39'fcr die Vergabe des Ersten Schula' +
-                    'bschlusses und des Erweiterten Ersten Schulabschlusses ma\'#39'dfgeb' +
-                    'end sind. Die Anforderungen auf der Erweiterungsebene sind auf d' +
-                    'as Erreichen des Mittleren Schulabschlusses (Fachoberschulreife)' +
-                    ' und der Berechtigung zum Besuch der gymnasialen Oberstufe ausge' +
-                    'richtet. In den Fachleistungskursen werden die Noten wie unter B' +
-                    'uchstabe a ausgewiesen erteilt.\f2\fs0\par'#13#10'\pard\nowidctlpar\fi' +
-                    '-284\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072\f0\fs14 3.\tab A' +
-                    'bschl\'#39'fcsse der Hauptschule am Ende der Klasse 9 und der Klasse' +
-                    ' 10\par'#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\t' +
-                    'x9072 Die Hauptschule vermittelt am Ende der Klasse 9 und der Kl' +
-                    'asse 10 folgende Abschl\'#39'fcsse:\par'#13#10'\pard\nowidctlpar\fi-283\li' +
+                    '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1031{\fonttbl{\f' +
+                    '0\fswiss\fprq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset0 Ti' +
+                    'mes New Roman;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil Calibri;}}' +
+                    #13#10'{\colortbl ;\red0\green0\blue0;}'#13#10'{\*\generator Riched20 10.0.' +
+                    '19041}\viewkind4\uc1 '#13#10'\pard\brdrt\brdrs\brdrw20\brsp20 \nowidct' +
+                    'lpar\ri283\qc\tqc\tx4536\tqr\tx9072\b\f0\fs14 Hinweise zum Zeugn' +
+                    'is\par'#13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx45' +
+                    '36\tqr\tx9072\b0 1.\tab Zur Spalte "Bemerkungen"\par'#13#10#13#10'\pard\no' +
+                    'widctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Hier k\'#39'f6n' +
+                    'nen eingetragen werden: \par'#13#10#13#10'\pard\nowidctlpar\fi-283\li567\r' +
+                    'i283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 besondere Leistungsnac' +
+                    'hweise wie Jugendsportabzeichen oder Schwimmzeugnis sowie Angabe' +
+                    'n \'#39'fcber freiwillig besuchte Kurse (z.B. Erste Hilfe)\par'#13#10'-\ta' +
+                    'b Angaben \'#39'fcber die Leistungen im herkunftssprachlichen Unterr' +
+                    'icht\par'#13#10'-\tab Angaben zur Wiederholung, Vorversetzung oder zum' +
+                    ' R\'#39'fccktritt\par'#13#10'-\tab Angaben zum Schulwechsel\par'#13#10'-\tab Ver' +
+                    'setzungsvermerk bei \'#39'dcberweisungs- oder Abgangszeugnissen.\par' +
+                    #13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\tqc\tx4536\tqr' +
+                    '\tx9072 2.\tab Notenstufen; Unterrichtsorganisation\par'#13#10#13#10'\pard' +
+                    '\nowidctlpar\fi-283\li567\ri283\qj\tx567\tqc\tx3402\tqr\tx9072 a' +
+                    ')\tab Bei der Bewertung einzelner Sch\'#39'fclerleistungen sowie in ' +
+                    'Zeugnissen werden die folgenden Notenstufen gem\'#39'e4\'#39'df \'#39'a7 48 ' +
+                    'Abs. 3 Schulgesetz NRW (SchulG) zugrunde gelegt:\f1\line\f0 1. s' +
+                    'ehr gut (1)\par'#13#10'\tab 2. gut (2)\par'#13#10'\tab 3. befriedigend (3)\p' +
+                    'ar'#13#10'\tab 4. ausreichend (4)\par'#13#10'\tab  5. mangelhaft (5)\par'#13#10'\t' +
+                    'ab 6. ungen\'#39'fcgend (6)\par'#13#10'b)\tab Der Unterricht in Englisch u' +
+                    'nd Mathematik wird in den Klassen 7 bis 9 in Fachleistungskursen' +
+                    ' mit zwei Anspruchsh\'#39'f6hen erteilt:\par'#13#10'\tab auf der Grundeben' +
+                    'e und der Erweiterungsebene. Der Unterricht auf der Grundebene o' +
+                    'rientiert sich an Anforderungen, die in Verbindung mit anderen v' +
+                    'on den Sch\'#39'fclerinnen und Sch\'#39'fclern zu erbringenden Leistunge' +
+                    'n als Voraussetzungen f\'#39'fcr die Vergabe des Ersten Schulabschlu' +
+                    'sses und des Erweiterten Ersten Schulabschlusses ma\'#39'dfgebend si' +
+                    'nd. Die Anforderungen auf der Erweiterungsebene sind auf das Err' +
+                    'eichen des Mittleren Schulabschlusses (Fachoberschulreife) und d' +
+                    'er Berechtigung zum Besuch der gymnasialen Oberstufe ausgerichte' +
+                    't. In den Fachleistungskursen werden die Noten wie unter Buchsta' +
+                    'be a ausgewiesen erteilt.\f2\fs0\par'#13#10#13#10'\pard\nowidctlpar\fi-284' +
+                    '\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072\f0\fs14 3.\tab Absch' +
+                    'l\'#39'fcsse der Hauptschule am Ende der Klasse 9 und der Klasse 10\' +
+                    'par'#13#10#13#10'\pard\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9' +
+                    '072 Die Hauptschule vermittelt am Ende der Klasse 9 und der Klas' +
+                    'se 10 folgende Abschl\'#39'fcsse:\par'#13#10#13#10'\pard\nowidctlpar\fi-283\li' +
                     '567\ri283\qj\tqc\tx4536\tqr\tx9072\f1 -\tab\f0 den "Ersten Schul' +
                     'abschluss" f\'#39'fcr Sch\'#39'fclerinnen und Sch\'#39'fcler, die das Ziel d' +
                     'er Klasse 9 der Hauptschule erreicht haben,\par'#13#10'-\tab den "Erwe' +
@@ -5330,17 +5661,17 @@ object Report: TppReport
                     'und Sch\'#39'fcler, die das Ziel der Klasse 10 Typ B erreicht haben.' +
                     '\par'#13#10'Wer die Hauptschule nach erf\'#39'fcllter Schulpflicht verl\'#39'e' +
                     '4sst, ohne einen Abschluss erreicht zu haben, erh\'#39'e4lt ein Abga' +
-                    'ngszeugnis.\par'#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284\t' +
-                    'qc\tx4536\tqr\tx9072 4.\tab Rechtsbehelfsbelehrung:\par'#13#10'\pard\n' +
-                    'owidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Gegen die ' +
-                    'Entscheidung, die Sch\'#39'fclerin oder den Sch\'#39'fcler nicht zu vers' +
-                    'etzen oder einen erreichbaren Abschluss oder eine Berechtigung n' +
-                    'icht zu vergeben, kann innerhalb eines Monats nach Bekanntgabe d' +
-                    'es Zeugnisses Widerspruch erhoben werden.\par'#13#10'Der Widerspruch i' +
-                    'st bei der Schule (<Bezeichnung1>, <Strasse>, <PLZ> <Ort>) schri' +
-                    'ftlich oder zur Niederschrift zu erheben.\par'#13#10'\pard\nowidctlpar' +
-                    '\ri200\qr SNr: <SchulNr>, SForm: HS\par'#13#10'\pard\nowidctlpar\qr\cf' +
-                    '1\f3\fs16\par'#13#10'}'#13#10#0
+                    'ngszeugnis.\par'#13#10#13#10'\pard\nowidctlpar\fi-284\li284\ri283\qj\tx284' +
+                    '\tqc\tx4536\tqr\tx9072 4.\tab Rechtsbehelfsbelehrung:\par'#13#10#13#10'\pa' +
+                    'rd\nowidctlpar\li284\ri283\qj\tx284\tqc\tx4536\tqr\tx9072 Gegen ' +
+                    'die Entscheidung, die Sch\'#39'fclerin oder den Sch\'#39'fcler nicht zu ' +
+                    'versetzen oder einen erreichbaren Abschluss oder eine Berechtigu' +
+                    'ng nicht zu vergeben, kann innerhalb eines Monats nach Bekanntga' +
+                    'be des Zeugnisses Widerspruch erhoben werden.\par'#13#10'Der Widerspru' +
+                    'ch ist bei der Schule (<Bezeichnung1>, <Strasse>, <PLZ> <Ort>) s' +
+                    'chriftlich oder zur Niederschrift zu erheben.\par'#13#10#13#10'\pard\nowid' +
+                    'ctlpar\ri200\qr SNr: <SchulNr>, SForm: HS\par'#13#10#13#10'\pard\nowidctlp' +
+                    'ar\qr\cf1\f3\fs16\par'#13#10'}'#13#10#0
                   RemoveEmptyLines = False
                   Stretch = True
                   mmHeight = 100277
@@ -5386,7 +5717,7 @@ object Report: TppReport
           end
         end
         object ppPageStyle4: TppPageStyle
-          Background.Brush.Style = bsClear
+          Border.mmPadding = 0
           EndPage = 0
           SinglePage = 0
           StartPage = 0
@@ -5418,10 +5749,10 @@ object Report: TppReport
       726F6772616D4E616D650609436F6E7374616E74730B50726F6772616D547970
       65070B747450726F63656475726506536F75726365148800000070726F636564
       75726520436F6E7374616E74733B0D0A636F6E73740D0A202052657056657273
-      696F6E203D2027323032332D30362D3037273B0D0A20205265704175746F7265
+      696F6E203D2027323032362D30372D3039273B0D0A20205265704175746F7265
       6E203D20274DC3BC6C6C65722C205265696E68617264742C20506CC3BC6D7065
       722C206465206C612048617965273B0D0A0D0A626567696E0D0A0D0A656E643B
-      0D0A084361726574506F730102010201000001060D54726156617250726F6772
+      0D0A084361726574506F7301021B0202000001060D54726156617250726F6772
       616D094368696C645479706502110B50726F6772616D4E616D65060956617269
       61626C65730B50726F6772616D54797065070B747450726F6365647572650653
       6F75726365143106000070726F636564757265205661726961626C65733B0D0A
@@ -5531,7 +5862,7 @@ object Report: TppReport
       792874782C20312C203129203D202747270D0A20207468656E20747874203A3D
       20272847202D204B75727329270D0A2020656C736520747874203A3D2027273B
       20200D0A2020526573756C74203A3D20747874200D0A656E643B0D0A08436172
-      6574506F730102010201000001060A54726150726F6772616D094368696C6454
+      6574506F730102030206000001060A54726150726F6772616D094368696C6454
       79706502150E497346756E6374696F6E54797065090B50726F6772616D4E616D
       65061248696E77656973416C7465466165636865720B50726F6772616D547970
       65070A747446756E6374696F6E06536F757263650CB101000066756E6374696F
@@ -6576,373 +6907,373 @@ object Report: TppReport
       616D65275D293B0D0A20202020656E640D0A2020656C73650D0A202020205363
       6875656C6572566F726E616D65447275636B203A3D205472696D285363687565
       6C65725B27566F726E616D65275D293B0D0A2020526573756C74203A3D205363
-      6875656C6572566F726E616D65447275636B3B0D0A0D0A656E643B0D0A084361
-      726574506F730102000200000001060A54726150726F6772616D094368696C64
-      5479706502150E497346756E6374696F6E54797065090B50726F6772616D4E61
-      6D65061B5A6575676E6973566F726E616D654E6163686E616D65447275636B0B
-      50726F6772616D54797065070A747446756E6374696F6E06536F757263650CB5
-      01000066756E6374696F6E205A6575676E6973566F726E616D654E6163686E61
-      6D65447275636B3A20737472696E673B0D0A0D0A7661720D0A20205363687565
-      6C6572566F726E616D654E6163686E616D65447275636B203A20737472696E67
-      3B0D0A0D0A626567696E0D0A0D0A2020696620285472696D2853636875656C65
-      725B275A757361747A4E6163686E616D65275D29203D20272729207468656E0D
-      0A2020202053636875656C6572566F726E616D654E6163686E616D6544727563
-      6B203A3D205A6575676E6973566F726E616D65447275636B202B20272027202B
-      205472696D2853636875656C65725B274E616D65275D290D0A2020656C73650D
-      0A2020202053636875656C6572566F726E616D654E6163686E616D6544727563
-      6B203A3D205A6575676E6973566F726E616D65447275636B202B20272027202B
-      205472696D2853636875656C65725B275A757361747A4E6163686E616D65275D
-      29202B20272027202B205472696D2853636875656C65725B274E616D65275D29
-      3B200D0A2020526573756C74203A3D202053636875656C6572566F726E616D65
-      4E6163686E616D65447275636B3B0D0A0D0A656E643B0D0A084361726574506F
-      730102000200000001060A54726150726F6772616D094368696C645479706502
-      150E497346756E6374696F6E54797065090B50726F6772616D4E616D65060B4C
-      5F564E616D655F41626B0B50726F6772616D54797065070A747446756E637469
-      6F6E06536F757263650C7203000066756E6374696F6E204C5F564E616D655F41
-      626B28766E3A20737472696E67293A20737472696E673B0D0A766172200D0A20
-      2068766E2C20765F6E3A20737472696E673B0D0A20206C652C2062693A20696E
-      74656765723B0D0A0D0A626567696E0D0A0D0A202068766E203A3D205472696D
-      28766E293B0D0A20200D0A202069662068766E203C3E202727207468656E200D
-      0A20202020626567696E200D0A202020202020765F6E203A3D20436F70792868
-      766E2C20312C203129202B20272E273B0D0A2020202020206C65203A3D20506F
-      73282720272C2068766E293B0D0A2020202020206269203A3D20506F7328272D
-      272C2068766E293B0D0A202020202020696620286C65202B20626929203E2030
-      207468656E200D0A2020202020202020626567696E0D0A202020202020202020
-      20696620286269203E20302920616E642028286C65203D203029206F7220286C
-      65203E2062692929207468656E0D0A202020202020202020202020626567696E
-      0D0A2020202020202020202020202020765F6E203A3D20765F6E202B20272D27
-      3B0D0A202020202020202020202020202044656C6574652868766E2C20312C20
-      6269293B0D0A2020202020202020202020202020765F6E203A3D20765F6E202B
-      20436F70792868766E2C20312C203129202B20272E273B0D0A20202020202020
-      2020202020656E640D0A20202020202020202020656C73652069662028202828
-      6C65203E20302920616E6420286E6F7420556E74657273636872696674656E4D
-      6974566F726E616D656E4E7572457273746572292920616E642028286269203D
-      203029206F7220286269203E206C6529292029207468656E0D0A202020202020
-      202020202020626567696E0D0A2020202020202020202020202020765F6E203A
-      3D20765F6E202B202720273B0D0A202020202020202020202020202044656C65
-      74652868766E2C20312C206C65293B0D0A202020202020202020202020202076
-      5F6E203A3D20765F6E202B20436F70792868766E2C20312C203129202B20272E
-      273B0D0A202020202020202020202020656E643B0D0A2020202020202020656E
-      643B0D0A202020202020765F6E203A3D20765F6E202B202720273B0D0A202020
-      20656E640D0A2020656C7365200D0A20202020765F6E203A3D2027273B200D0A
-      20200D0A2020526573756C74203A3D20765F6E3B0D0A20200D0A656E643B0D0A
-      084361726574506F730102000200000001060A54726150726F6772616D094368
-      696C645479706502150E497346756E6374696F6E54797065090B50726F677261
-      6D4E616D650626556E746572736368726966747362657A656963686E756E675A
-      7573616D6D656E7365747A656E0B50726F6772616D54797065070A747446756E
-      6374696F6E06536F757263650C3E06000066756E6374696F6E20556E74657273
+      6875656C6572566F726E616D65447275636B3B0D0A0D0A656E643B0D0A000106
+      0A54726150726F6772616D094368696C645479706502150E497346756E637469
+      6F6E54797065090B50726F6772616D4E616D65061B5A6575676E6973566F726E
+      616D654E6163686E616D65447275636B0B50726F6772616D54797065070A7474
+      46756E6374696F6E06536F757263650CB501000066756E6374696F6E205A6575
+      676E6973566F726E616D654E6163686E616D65447275636B3A20737472696E67
+      3B0D0A0D0A7661720D0A202053636875656C6572566F726E616D654E6163686E
+      616D65447275636B203A20737472696E673B0D0A0D0A626567696E0D0A0D0A20
+      20696620285472696D2853636875656C65725B275A757361747A4E6163686E61
+      6D65275D29203D20272729207468656E0D0A2020202053636875656C6572566F
+      726E616D654E6163686E616D65447275636B203A3D205A6575676E6973566F72
+      6E616D65447275636B202B20272027202B205472696D2853636875656C65725B
+      274E616D65275D290D0A2020656C73650D0A2020202053636875656C6572566F
+      726E616D654E6163686E616D65447275636B203A3D205A6575676E6973566F72
+      6E616D65447275636B202B20272027202B205472696D2853636875656C65725B
+      275A757361747A4E6163686E616D65275D29202B20272027202B205472696D28
+      53636875656C65725B274E616D65275D293B200D0A2020526573756C74203A3D
+      202053636875656C6572566F726E616D654E6163686E616D65447275636B3B0D
+      0A0D0A656E643B0D0A0001060A54726150726F6772616D094368696C64547970
+      6502150E497346756E6374696F6E54797065090B50726F6772616D4E616D6506
+      0B4C5F564E616D655F41626B0B50726F6772616D54797065070A747446756E63
+      74696F6E06536F757263650C7203000066756E6374696F6E204C5F564E616D65
+      5F41626B28766E3A20737472696E67293A20737472696E673B0D0A766172200D
+      0A202068766E2C20765F6E3A20737472696E673B0D0A20206C652C2062693A20
+      696E74656765723B0D0A0D0A626567696E0D0A0D0A202068766E203A3D205472
+      696D28766E293B0D0A20200D0A202069662068766E203C3E202727207468656E
+      200D0A20202020626567696E200D0A202020202020765F6E203A3D20436F7079
+      2868766E2C20312C203129202B20272E273B0D0A2020202020206C65203A3D20
+      506F73282720272C2068766E293B0D0A2020202020206269203A3D20506F7328
+      272D272C2068766E293B0D0A202020202020696620286C65202B20626929203E
+      2030207468656E200D0A2020202020202020626567696E0D0A20202020202020
+      202020696620286269203E20302920616E642028286C65203D203029206F7220
+      286C65203E2062692929207468656E0D0A202020202020202020202020626567
+      696E0D0A2020202020202020202020202020765F6E203A3D20765F6E202B2027
+      2D273B0D0A202020202020202020202020202044656C6574652868766E2C2031
+      2C206269293B0D0A2020202020202020202020202020765F6E203A3D20765F6E
+      202B20436F70792868766E2C20312C203129202B20272E273B0D0A2020202020
+      20202020202020656E640D0A20202020202020202020656C7365206966202820
+      28286C65203E20302920616E6420286E6F7420556E7465727363687269667465
+      6E4D6974566F726E616D656E4E7572457273746572292920616E642028286269
+      203D203029206F7220286269203E206C6529292029207468656E0D0A20202020
+      2020202020202020626567696E0D0A2020202020202020202020202020765F6E
+      203A3D20765F6E202B202720273B0D0A20202020202020202020202020204465
+      6C6574652868766E2C20312C206C65293B0D0A20202020202020202020202020
+      20765F6E203A3D20765F6E202B20436F70792868766E2C20312C203129202B20
+      272E273B0D0A202020202020202020202020656E643B0D0A2020202020202020
+      656E643B0D0A202020202020765F6E203A3D20765F6E202B202720273B0D0A20
+      202020656E640D0A2020656C7365200D0A20202020765F6E203A3D2027273B20
+      0D0A20200D0A2020526573756C74203A3D20765F6E3B0D0A20200D0A656E643B
+      0D0A0001060A54726150726F6772616D094368696C645479706502150E497346
+      756E6374696F6E54797065090B50726F6772616D4E616D650626556E74657273
       6368726966747362657A656963686E756E675A7573616D6D656E7365747A656E
-      284175734B7565727A656C4C6164656E3A20626F6F6C65616E3B20766172204C
-      5F4B7565727A656C2C204C5F4E616D652C204C5F566F726E616D652C204C5F54
-      6974656C2C204C5F416D747362657A2C204C5F46756E6B74696F6E3A20737472
-      696E67293A20737472696E673B0D0A766172200D0A20204C5F416E7265646520
-      3A20537472696E673B0D0A202073546974656C2C2073566F726E616D652C2073
-      4E6163686E616D652C2073416D747362657A2C207346756E6B74696F6E203A20
-      737472696E673B0D0A20207342657A656963686E756E673A20737472696E673B
-      0D0A20200D0A626567696E0D0A20200D0A20207342657A656963686E756E6720
-      3A3D2027273B0D0A200D0A2020696620284175734B7565727A656C4C6164656E
-      20616E6420284C5F4B7565727A656C203C3E2027272929207468656E0D0A2020
-      20204C6568726572646174656E4C6164656E284C5F4B7565727A656C2C204C5F
-      4E616D652C204C5F566F726E616D652C204C5F416E726564652C204C5F546974
-      656C2C204C5F416D747362657A293B0D0A200D0A20204C5F416E72656465203A
-      3D205472696D284C5F416E72656465293B0D0A20200D0A202073546974656C20
-      3A3D205472696D284C5F546974656C293B0D0A202069662073546974656C203C
-      3E202727207468656E200D0A20202020626567696E0D0A202020202020696620
-      506F7328272E272C2073546974656C29203D2030207468656E2073546974656C
-      203A3D2073546974656C202B20272E273B0D0A20202020202073546974656C20
-      3A3D2073546974656C202B202720273B200D0A20202020656E643B0D0A20200D
-      0A202073566F726E616D65203A3D204C5F564E616D655F41626B284C5F566F72
-      6E616D65293B0D0A2020734E6163686E616D65203A3D205472696D284C5F4E61
-      6D65293B0D0A20200D0A202073416D747362657A203A3D205472696D284C5F41
-      6D747362657A293B0D0A20206966202873416D747362657A203C3E2027272920
-      7468656E200D0A2020202073416D747362657A203A3D20272C2027202B207341
-      6D747362657A0D0A2020656C7365200D0A2020202073416D747362657A203A3D
-      2027273B0D0A0D0A20207346756E6B74696F6E203A3D205472696D284C5F4675
-      6E6B74696F6E293B0D0A20200D0A2020696620284175734B7565727A656C4C61
-      64656E20616E6420284C5F4B7565727A656C203C3E2027272920616E6420284C
-      5F416E72656465203D202746726175272920616E642028706F73287346756E6B
-      74696F6E2C20272D2D536368756C6C65697465722D41627465696C756E67736C
-      65697465722D4B6C617373656E6C65687265722D2D2729203E20302920746865
-      6E0D0A202020207346756E6B74696F6E203A3D207346756E6B74696F6E202B20
-      27696E273B0D0A20200D0A202069662028556E74657273636872696674656E4D
-      69744E6163686E616D656E20414E442028734E6163686E616D65203C3E202727
-      29297468656E0D0A20202020626567696E0D0A202020202020696620556E7465
-      7273636872696674656E4D6974546974656C207468656E207342657A65696368
-      6E756E67203A3D207342657A656963686E756E67202B2073546974656C3B0D0A
-      202020202020696620556E74657273636872696674656E4D6974566F726E616D
+      0B50726F6772616D54797065070A747446756E6374696F6E06536F757263650C
+      3E06000066756E6374696F6E20556E746572736368726966747362657A656963
+      686E756E675A7573616D6D656E7365747A656E284175734B7565727A656C4C61
+      64656E3A20626F6F6C65616E3B20766172204C5F4B7565727A656C2C204C5F4E
+      616D652C204C5F566F726E616D652C204C5F546974656C2C204C5F416D747362
+      657A2C204C5F46756E6B74696F6E3A20737472696E67293A20737472696E673B
+      0D0A766172200D0A20204C5F416E72656465203A20537472696E673B0D0A2020
+      73546974656C2C2073566F726E616D652C20734E6163686E616D652C2073416D
+      747362657A2C207346756E6B74696F6E203A20737472696E673B0D0A20207342
+      657A656963686E756E673A20737472696E673B0D0A20200D0A626567696E0D0A
+      20200D0A20207342657A656963686E756E67203A3D2027273B0D0A200D0A2020
+      696620284175734B7565727A656C4C6164656E20616E6420284C5F4B7565727A
+      656C203C3E2027272929207468656E0D0A202020204C6568726572646174656E
+      4C6164656E284C5F4B7565727A656C2C204C5F4E616D652C204C5F566F726E61
+      6D652C204C5F416E726564652C204C5F546974656C2C204C5F416D747362657A
+      293B0D0A200D0A20204C5F416E72656465203A3D205472696D284C5F416E7265
+      6465293B0D0A20200D0A202073546974656C203A3D205472696D284C5F546974
+      656C293B0D0A202069662073546974656C203C3E202727207468656E200D0A20
+      202020626567696E0D0A202020202020696620506F7328272E272C2073546974
+      656C29203D2030207468656E2073546974656C203A3D2073546974656C202B20
+      272E273B0D0A20202020202073546974656C203A3D2073546974656C202B2027
+      20273B200D0A20202020656E643B0D0A20200D0A202073566F726E616D65203A
+      3D204C5F564E616D655F41626B284C5F566F726E616D65293B0D0A2020734E61
+      63686E616D65203A3D205472696D284C5F4E616D65293B0D0A20200D0A202073
+      416D747362657A203A3D205472696D284C5F416D747362657A293B0D0A202069
+      66202873416D747362657A203C3E20272729207468656E200D0A202020207341
+      6D747362657A203A3D20272C2027202B2073416D747362657A0D0A2020656C73
+      65200D0A2020202073416D747362657A203A3D2027273B0D0A0D0A2020734675
+      6E6B74696F6E203A3D205472696D284C5F46756E6B74696F6E293B0D0A20200D
+      0A2020696620284175734B7565727A656C4C6164656E20616E6420284C5F4B75
+      65727A656C203C3E2027272920616E6420284C5F416E72656465203D20274672
+      6175272920616E642028706F73287346756E6B74696F6E2C20272D2D53636875
+      6C6C65697465722D41627465696C756E67736C65697465722D4B6C617373656E
+      6C65687265722D2D2729203E203029207468656E0D0A202020207346756E6B74
+      696F6E203A3D207346756E6B74696F6E202B2027696E273B0D0A20200D0A2020
+      69662028556E74657273636872696674656E4D69744E6163686E616D656E2041
+      4E442028734E6163686E616D65203C3E20272729297468656E0D0A2020202062
+      6567696E0D0A202020202020696620556E74657273636872696674656E4D6974
+      546974656C207468656E207342657A656963686E756E67203A3D207342657A65
+      6963686E756E67202B2073546974656C3B0D0A202020202020696620556E7465
+      7273636872696674656E4D6974566F726E616D656E207468656E207342657A65
+      6963686E756E67203A3D207342657A656963686E756E67202B2073566F726E61
+      6D653B200D0A2020202020207342657A656963686E756E67203A3D207342657A
+      656963686E756E67202B20734E6163686E616D653B0D0A202020202020696620
+      556E74657273636872696674656E4D6974416D747362657A656963686E756E67
       656E207468656E207342657A656963686E756E67203A3D207342657A65696368
-      6E756E67202B2073566F726E616D653B200D0A2020202020207342657A656963
-      686E756E67203A3D207342657A656963686E756E67202B20734E6163686E616D
-      653B0D0A202020202020696620556E74657273636872696674656E4D6974416D
-      747362657A656963686E756E67656E207468656E207342657A656963686E756E
-      67203A3D207342657A656963686E756E67202B2073416D747362657A3B0D0A20
-      202020656E643B0D0A202020200D0A20206966207342657A656963686E756E67
-      203C3E202727207468656E207342657A656963686E756E67203A3D207342657A
-      656963686E756E67202B2027202827202B207346756E6B74696F6E202B202729
-      273B0D0A202020200D0A2020526573756C74203A3D207342657A656963686E75
-      6E673B0D0A20200D0A656E643B0D0A084361726574506F730102000200000001
-      060A54726150726F6772616D094368696C645479706502150B50726F6772616D
-      4E616D65061B556E74657273636872696674656E546578746545696E6C657365
-      6E0B50726F6772616D54797065070B747450726F63656475726506536F757263
-      65141204000070726F63656475726520556E74657273636872696674656E5465
-      78746545696E6C6573656E28636F6E73742073546578742C207344656661756C
-      7446756E6B74696F6E203A20737472696E673B2076617220624D69744C5F4B72
-      7A203A20626F6F6C65616E3B2076617220734C5F4B727A2C20734C5F46756E6B
-      74696F6E203A20737472696E67293B0D0A766172200D0A20204E616D652C2056
-      6F726E616D652C20416E726564652C20546974656C2C20416D747362657A203A
-      20737472696E673B0D0A2020694B6F6D6D612C20694B6C616D6D6572312C2069
-      4B6C616D6D657232203A20696E74656765723B0D0A202020200D0A626567696E
-      0D0A0D0A20202F2F205465787420626973207A756D2065727374656E204B6F6D
-      6D61206175736C6573656E2C20646965736572206572737465205465696C2077
-      69726420616C73204BC3BC727A656C20696E74657270726574696572740D0A20
-      20694B6F6D6D61203A3D20706F7328272C272C207354657874293B0D0A202069
-      6620694B6F6D6D61203E2030207468656E0D0A20202020734C5F4B727A203A3D
-      207472696D28636F70792873546578742C20312C20694B6F6D6D612D3129290D
-      0A2020656C736520202020202020202020202020202020202020200D0A202020
-      20734C5F4B727A203A3D207472696D287354657874293B0D0A202020200D0A20
-      202F2F205072C3BC66652C206F6220646965732065696E204C65687265726BC3
-      BC727A656C2069737420756E64207365747A6520656E74737072656368656E64
-      20624D69744C5F4B727A0D0A2020566F726E616D65203A3D2027273B0D0A2020
-      4C6568726572446174656E4C6164656E28734C5F4B727A2C204E616D652C2056
-      6F726E616D652C20416E726564652C20546974656C2C20416D747362657A293B
-      0D0A2020624D69744C5F4B727A203A3D20285472696D28566F726E616D652920
-      3C3E202727293B0D0A20200D0A20202F2F2057656E6E206A612C206C69657320
-      6469652046756E6B74696F6E206175732064656D2054657874206175730D0A20
-      20694B6C616D6D657231203A3D20706F73282728272C207354657874293B0D0A
-      2020694B6C616D6D657232203A3D20706F73282729272C207354657874293B0D
-      0A202069662028694B6C616D6D657231203D203029206F722028694B6C616D6D
-      657232203D203029206F722028694B6C616D6D657231203E20694B6C616D6D65
-      723229207468656E0D0A20202020734C5F46756E6B74696F6E203A3D20747269
-      6D287344656661756C7446756E6B74696F6E290D0A2020656C73650D0A202020
-      20734C5F46756E6B74696F6E203A3D207472696D28636F70792873546578742C
-      20694B6C616D6D6572312B312C20694B6C616D6D657232202D20694B6C616D6D
-      657231202D203129293B0D0A202020200D0A656E643B0D0A084361726574506F
-      730102000200000001060A54726150726F6772616D094368696C645479706502
-      150E497346756E6374696F6E54797065090B50726F6772616D4E616D65061256
-      65727365747A756E67737665726D65726B0B50726F6772616D54797065070A74
-      7446756E6374696F6E06536F75726365144E18000066756E6374696F6E205665
-      727365747A756E67737665726D65726B3A20537472696E673B0D0A7661720D0A
-      20204A675F45462C204A675F51312C20473839203A20737472696E673B0D0A20
-      20416B7475656C6C6553747566653A20696E74656765723B0D0A202056657273
-      65747A756E6741625374756665203A20696E74656765723B0D0A2020466F6C67
-      654772757070652C204E69636874203A20737472696E673B0D0A202054657874
-      203A20737472696E673B0D0A20200D0A626567696E0D0A20200D0A20207B0D0A
-      2020416E6D65726B756E673A0D0A20202D2D2D2D2D2D2D2D2D2D0D0A20205374
-      6174742065696E657220C3846E646572756E6720646572205265706F72742D50
-      726F6772616D6D696572756E67206BC3B66E6E656E2053696520646972656B74
-      20696E20536368696C642065696E656E20696E646976696475656C6C656E2056
-      65727365747A756E67737665726D65726B20646566696E696572656E2E0D0A20
-      20446965736572207769726420696D6D657220616E7374656C6C652064657320
-      6869657220646566696E69657274656E205665727365747A756E67737665726D
-      65726B732076657277656E6465742E200D0A20207D0D0A0D0A20205465787420
-      3A3D2027273B0D0A20200D0A20202F2F2046616C6C73205665727365747A756E
-      677362656D65726B756E67206578697374696572742C2077697264206E757220
-      6469657365206765647275636B7420756E64206B65696E205665727365747A75
-      6E67737665726D65726B2067656E6572696572742E0D0A0D0A20206966205472
-      696D2841535653656B5F495B2742656D65726B756E67205665727365747A756E
-      67275D29203C3E202727207468656E0D0A20202020626567696E0D0A20202020
-      202054657874203A3D205472696D2841535653656B5F495B2742656D65726B75
-      6E67205665727365747A756E67275D293B0D0A20202020656E640D0A20202020
-      0D0A2020656C7365200D0A0D0A202020202F2F204B65696E20696E6469766964
-      75656C6C6572205665726D65726B2C2067656E65726965726520646168657220
-      64656E205665727365747A756E67737665726D65726B207A756D20536368756C
-      6A61687265737765636873656C206F6465722062656920566F72766572736574
-      7A756E670D0A20202020696620284C65726E61627363686E697474655B274162
-      7363686E697474275D203D2045535F416E7A416229206F7220284C65726E6162
-      7363686E697474655B275665727365747A756E674B727A275D203D2027565627
-      29207468656E200D0A202020202020626567696E0D0A20200D0A202020202020
-      20202F2F205661726961626C656E20696E697469616C6973696572656E0D0A20
-      202020202020204A675F4546203A3D2027273B0D0A20202020202020204A675F
-      5131203A3D2027273B0D0A2020202020202020473839203A3D2027273B0D0A20
-      20202020202020416B7475656C6C655374756665203A3D204C65726E61627363
-      686E697474655B274A61687267616E67275D3B0D0A2020202020202020566572
-      7365747A756E6741625374756665203A3D20537472546F496E74285665727365
-      747A756E67426567696E6E4153444A61687267616E67293B0D0A20200D0A2020
-      2020202020202F2F204C6567652064696520466F6C6765677275707065207A75
-      6EC3A463687374206D69742064656D205374616E64617264776572742022416B
-      7475656C6C65204A61687267616E67202B20312220666573742C2077656E6E0D
-      0A20202020202020202F2F206B65696E6520566F727665727365747A756E6720
-      28565629207A756D20536368756C6A61687265737765636873656C2073746174
-      7466696E646574202864616E6E2077C3BC72646520736963682064696520466F
-      6C6765737475666520756D202B3220676567656EC3BC6265722064657220616B
-      7475656C6C656E20537475666520657268C3B668656E292E0D0A0D0A20202020
-      202020206966206E6F742028284C65726E61627363686E69747465205B275665
-      727365747A756E674B727A275D203D20275656272920616E6420284C65726E61
-      627363686E697474655B2741627363686E697474275D203D2045535F416E7A41
-      622929207468656E0D0A20202020202020202020466F6C676547727570706520
-      3A3D20496E74546F537472284C65726E61627363686E697474655B274A616872
-      67616E67275D202B203129202020200D0A2020202020202020656C73650D0A20
+      6E756E67202B2073416D747362657A3B0D0A20202020656E643B0D0A20202020
+      0D0A20206966207342657A656963686E756E67203C3E202727207468656E2073
+      42657A656963686E756E67203A3D207342657A656963686E756E67202B202720
+      2827202B207346756E6B74696F6E202B202729273B0D0A202020200D0A202052
+      6573756C74203A3D207342657A656963686E756E673B0D0A20200D0A656E643B
+      0D0A0001060A54726150726F6772616D094368696C645479706502150B50726F
+      6772616D4E616D65061B556E74657273636872696674656E546578746545696E
+      6C6573656E0B50726F6772616D54797065070B747450726F6365647572650653
+      6F75726365141204000070726F63656475726520556E74657273636872696674
+      656E546578746545696E6C6573656E28636F6E73742073546578742C20734465
+      6661756C7446756E6B74696F6E203A20737472696E673B2076617220624D6974
+      4C5F4B727A203A20626F6F6C65616E3B2076617220734C5F4B727A2C20734C5F
+      46756E6B74696F6E203A20737472696E67293B0D0A766172200D0A20204E616D
+      652C20566F726E616D652C20416E726564652C20546974656C2C20416D747362
+      657A203A20737472696E673B0D0A2020694B6F6D6D612C20694B6C616D6D6572
+      312C20694B6C616D6D657232203A20696E74656765723B0D0A202020200D0A62
+      6567696E0D0A0D0A20202F2F205465787420626973207A756D2065727374656E
+      204B6F6D6D61206175736C6573656E2C20646965736572206572737465205465
+      696C207769726420616C73204BC3BC727A656C20696E74657270726574696572
+      740D0A2020694B6F6D6D61203A3D20706F7328272C272C207354657874293B0D
+      0A2020696620694B6F6D6D61203E2030207468656E0D0A20202020734C5F4B72
+      7A203A3D207472696D28636F70792873546578742C20312C20694B6F6D6D612D
+      3129290D0A2020656C736520202020202020202020202020202020202020200D
+      0A20202020734C5F4B727A203A3D207472696D287354657874293B0D0A202020
+      200D0A20202F2F205072C3BC66652C206F6220646965732065696E204C656872
+      65726BC3BC727A656C2069737420756E64207365747A6520656E747370726563
+      68656E6420624D69744C5F4B727A0D0A2020566F726E616D65203A3D2027273B
+      0D0A20204C6568726572446174656E4C6164656E28734C5F4B727A2C204E616D
+      652C20566F726E616D652C20416E726564652C20546974656C2C20416D747362
+      657A293B0D0A2020624D69744C5F4B727A203A3D20285472696D28566F726E61
+      6D6529203C3E202727293B0D0A20200D0A20202F2F2057656E6E206A612C206C
+      696573206469652046756E6B74696F6E206175732064656D2054657874206175
+      730D0A2020694B6C616D6D657231203A3D20706F73282728272C207354657874
+      293B0D0A2020694B6C616D6D657232203A3D20706F73282729272C2073546578
+      74293B0D0A202069662028694B6C616D6D657231203D203029206F722028694B
+      6C616D6D657232203D203029206F722028694B6C616D6D657231203E20694B6C
+      616D6D65723229207468656E0D0A20202020734C5F46756E6B74696F6E203A3D
+      207472696D287344656661756C7446756E6B74696F6E290D0A2020656C73650D
+      0A20202020734C5F46756E6B74696F6E203A3D207472696D28636F7079287354
+      6578742C20694B6C616D6D6572312B312C20694B6C616D6D657232202D20694B
+      6C616D6D657231202D203129293B0D0A202020200D0A656E643B0D0A0001060A
+      54726150726F6772616D094368696C645479706502150E497346756E6374696F
+      6E54797065090B50726F6772616D4E616D6506125665727365747A756E677376
+      65726D65726B0B50726F6772616D54797065070A747446756E6374696F6E0653
+      6F75726365149B18000066756E6374696F6E205665727365747A756E67737665
+      726D65726B3A20537472696E673B0D0A7661720D0A20204A675F45462C204A67
+      5F51312C20473839203A20737472696E673B0D0A2020416B7475656C6C655374
+      7566653A20696E74656765723B0D0A20205665727365747A756E674162537475
+      6665203A20696E74656765723B0D0A2020466F6C67654772757070652C204E69
+      636874203A20737472696E673B0D0A202054657874203A20737472696E673B0D
+      0A20200D0A626567696E0D0A20200D0A20207B0D0A2020416E6D65726B756E67
+      3A0D0A20202D2D2D2D2D2D2D2D2D2D0D0A202053746174742065696E657220C3
+      846E646572756E6720646572205265706F72742D50726F6772616D6D69657275
+      6E67206BC3B66E6E656E2053696520646972656B7420696E20536368696C6420
+      65696E656E20696E646976696475656C6C656E205665727365747A756E677376
+      65726D65726B20646566696E696572656E2E0D0A202044696573657220776972
+      6420696D6D657220616E7374656C6C6520646573206869657220646566696E69
+      657274656E205665727365747A756E67737665726D65726B732076657277656E
+      6465742E200D0A20207D0D0A0D0A202054657874203A3D2027273B0D0A20200D
+      0A20202F2F2046616C6C73205665727365747A756E677362656D65726B756E67
+      206578697374696572742C2077697264206E7572206469657365206765647275
+      636B7420756E64206B65696E205665727365747A756E67737665726D65726B20
+      67656E6572696572742E0D0A0D0A20206966205472696D2841535653656B5F49
+      5B2742656D65726B756E67205665727365747A756E67275D29203C3E20272720
+      7468656E0D0A20202020626567696E0D0A20202020202054657874203A3D2054
+      72696D2841535653656B5F495B2742656D65726B756E67205665727365747A75
+      6E67275D293B0D0A20202020656E640D0A202020200D0A2020656C7365200D0A
+      0D0A202020202F2F204B65696E20696E646976696475656C6C6572205665726D
+      65726B2C2067656E6572696572652064616865722064656E205665727365747A
+      756E67737665726D65726B207A756D20536368756C6A61687265737765636873
+      656C206F6465722062656920566F727665727365747A756E670D0A2020202069
+      6620284C65726E61627363686E697474655B2741627363686E697474275D203D
+      2045535F416E7A416229206F7220284C65726E61627363686E697474655B2756
+      65727365747A756E674B727A275D203D202756562729207468656E200D0A2020
+      20202020626567696E0D0A20200D0A20202020202020202F2F20566172696162
+      6C656E20696E697469616C6973696572656E0D0A20202020202020204A675F45
+      46203A3D2027273B0D0A20202020202020204A675F5131203A3D2027273B0D0A
+      2020202020202020473839203A3D2027273B0D0A2020202020202020416B7475
+      656C6C655374756665203A3D204C65726E61627363686E697474655B274A6168
+      7267616E67275D3B0D0A20202020202020205665727365747A756E6741625374
+      756665203A3D20537472546F496E74285665727365747A756E67426567696E6E
+      4153444A61687267616E67293B0D0A20200D0A20202020202020202F2F204C65
+      67652064696520466F6C6765677275707065207A756EC3A463687374206D6974
+      2064656D205374616E64617264776572742022416B7475656C6C65204A616872
+      67616E67202B20312220666573742C2077656E6E0D0A20202020202020202F2F
+      206B65696E6520566F727665727365747A756E672028565629207A756D205363
+      68756C6A61687265737765636873656C20737461747466696E64657420286461
+      6E6E2077C3BC72646520736963682064696520466F6C6765737475666520756D
+      202B3220676567656EC3BC6265722064657220616B7475656C6C656E20537475
+      666520657268C3B668656E292E0D0A0D0A20202020202020206966206E6F7420
+      28284C65726E61627363686E69747465205B275665727365747A756E674B727A
+      275D203D20275656272920616E6420284C65726E61627363686E697474655B27
+      41627363686E697474275D203D2045535F416E7A41622929207468656E0D0A20
       202020202020202020466F6C6765477275707065203A3D20496E74546F537472
-      284C65726E61627363686E697474655B274A61687267616E67275D202B203229
-      3B0D0A202020202020200D0A20202020202020202F2F20536368756C656E206D
-      69742067796D6E617369616C6572204F626572737475666520627A676C2E2064
-      657220466F6C676567727570706520696E20646572204F626572737475666520
-      657266617373656E2E204461626569206175636820473820756E642047392061
-      6D2047796D6E617369756D20756E746572736368656964656E2E202020202020
-      0D0A0D0A20202020202020206966202828456967656E65536368756C655B2753
-      6368756C666F726D4B727A275D203D202747592729206F722028456967656E65
-      536368756C655B27536368756C666F726D4B727A275D203D2027474527292920
-      7468656E0D0A20202020202020202020626567696E20200D0A20202020202020
-      202020202069662053636875656C65725B27415344536368756C666F726D275D
-      203D202747593827207468656E0D0A2020202020202020202020202020626567
-      696E0D0A20202020202020202020202020202020473839203A3D20274738273B
-      0D0A20202020202020202020202020202020696620466F6C6765477275707065
-      203D2027313027207468656E0D0A202020202020202020202020202020202020
-      2020466F6C6765477275707065203A3D20274546270D0A202020202020202020
-      20202020202020656C736520696620466F6C6765477275707065203D20273131
-      27207468656E0D0A2020202020202020202020202020202020202020466F6C67
-      65477275707065203A3D20275131273B200D0A20202020202020202020202020
-      20656E64200D0A202020202020202020202020656C73650D0A20202020202020
-      20202020202020626567696E0D0A202020202020202020202020202020204738
-      39203A3D20274739273B0D0A2020202020202020202020202020202069662046
-      6F6C6765477275707065203D2027313127207468656E0D0A2020202020202020
-      202020202020202020202020466F6C6765477275707065203A3D20274546270D
-      0A20202020202020202020202020202020656C736520696620466F6C67654772
-      75707065203D2027313227207468656E0D0A2020202020202020202020202020
-      202020202020466F6C6765477275707065203A3D20275131273B200D0A202020
-      2020202020202020202020656E643B0D0A20202020202020202020656E643B0D
-      0A20202020202020200D0A20202020202020202F2F20496E2064656E2046C3A4
-      6C6C656E20562C2056502C20465220776972642073746174742064657220466F
-      6C6765737475666520617563682064696520506172616C6C656C6974C3A47420
-      6D6974206175736765676562656E2E200D0A20202020202020202F2F20566572
-      77656E64652064616865722064696520466F6C67656B6C617373652064657320
-      536368C3BC6C6572732061757320536368494C44206F686E652066C3BC687265
-      6E6465204E756C6C2E2044696520766F7268657220616C6C67656D65696E2065
-      726D697474656C74657420466F6C676567727570706520776972642064616265
-      6920C3BC62657273636872696562656E2E0D0A20202020202020202F2F204175
-      736E61686D652073696E6420646965205665727365747A756E6720696E206469
-      65204F626572737475666520756E6420616E2064657220486175707473636875
-      6C652062656920646572205665727365747A756E6720696E20646965204B6C61
-      7373652031302C20776F206E61636820547970204120756E64204220756E7465
-      72736368696564656E20776972642E0D0A0D0A20202020202020206966202828
-      4C65726E61627363686E697474655B275665727365747A756E674B727A275D20
-      3D2027562729206F7220284C65726E61627363686E69747465205B2756657273
-      65747A756E674B727A275D203D202756502729206F7220284C65726E61627363
-      686E69747465205B275665727365747A756E674B727A275D203D202746522729
-      29207468656E0D0A20202020202020202020626567696E0D0A20202020202020
-      2020202F2F20426569205665727365747A756E6720696E20646965204F626572
-      737475666520626C656962742064696520466F6C676567727570706520756E76
-      6572C3A46E646572740D0A20202020202020202020696620706F7328466F6C67
-      654772757070652C272D2D45462D2D51312D2D2729203D2030207468656E0D0A
-      202020202020202020202020626567696E0D0A20202020202020202020202020
-      202F2F20416C6C6520536368756C656E206F686E6520485320696E204B6C6173
-      73652031300D0A20202020202020202020202020206966206E6F742028282845
-      6967656E65536368756C655B27536368756C666F726D4B727A275D203D202748
-      2729206F7220284C65726E61627363686E697474655B27415344536368756C67
-      6C6965646572756E67275D203D20274827292920616E642028466F6C67654772
-      75707065203D20273130272929207468656E0D0A202020202020202020202020
-      20202020466F6C6765477275707065203A3D206F664E284C65726E6162736368
-      6E697474655B27466F6C67656B6C61737365275D2920202020202020200D0A20
-      20202020202020202020202020656C7365200D0A202020202020202020202020
-      202020202F2F20416E20646572204861757074736368756C6520627A772E2062
-      65692065696E656D20536368C3BC6C657220696E2048532D476C696564657275
-      6E67206D7573732062656920646572205665727365747A756E6720696E206469
-      65204B6C6173736520313020626569206A6564656D20536368C3BC6C6572207A
-      7769736368656E20547970204120756E6420547970204220756E746572736368
-      696564656E2077657264656E2E0D0A2020202020202020202020202020202062
-      6567696E0D0A20202020202020202020202020202020202069662028506F7328
-      27313041272C204C65726E61627363686E697474655B2741627363686C757373
-      275D29203E203029207468656E0D0A2020202020202020202020202020202020
-      202020466F6C6765477275707065203A3D20466F6C6765477275707065202B20
-      272C2054797020412C270D0A202020202020202020202020202020202020656C
-      7365200D0A2020202020202020202020202020202020202020466F6C67654772
-      75707065203A3D20466F6C6765477275707065202B20272C2054797020422C27
-      3B0D0A20202020202020202020202020202020656E643B0D0A20202020202020
-      2020202020656E643B20202020202020200D0A20202020202020202020656E64
-      3B202020202020200D0A202020202020202020200D0A20202020202020202F2F
-      204E69636874207665727365747A74206F646572204E69636874207665727365
-      747A74206D6974204E6163687072C3BC66756E67736DC3B6676C6963686B6569
-      74206F6465722041627363686C7573732062656EC3B6746967656E2065696E20
-      226E696368742220696D20546578740D0A0D0A20202020202020206966202828
-      4C65726E61627363686E697474655B275665727365747A756E674B727A275D20
-      3D20274E2729206F7220284C65726E61627363686E69747465205B2756657273
-      65747A756E674B727A275D203D20274E502729206F7220284C65726E61627363
-      686E69747465205B275665727365747A756E674B727A275D203D202741272929
-      207468656E0D0A202020202020202020204E69636874203A3D20276E69636874
-      20270D0A2020202020202020656C7365200D0A202020202020202020204E6963
-      6874203A3D2027273B200D0A20200D0A20202020202020202F2F202323232054
-      6578742066C3BC722064656E205665727365747A756E677362657363686C7573
-      732062696C64656E202323232323232323232323232323232323232323232323
+      284C65726E61627363686E697474655B274A61687267616E67275D202B203129
+      202020200D0A2020202020202020656C73650D0A20202020202020202020466F
+      6C6765477275707065203A3D20496E74546F537472284C65726E61627363686E
+      697474655B274A61687267616E67275D202B2032293B0D0A202020202020200D
+      0A20202020202020202F2F20536368756C656E206D69742067796D6E61736961
+      6C6572204F626572737475666520627A676C2E2064657220466F6C6765677275
+      70706520696E20646572204F626572737475666520657266617373656E2E2044
+      61626569206175636820473820756E6420473920616D2047796D6E617369756D
+      20756E746572736368656964656E2E2020202020200D0A0D0A20202020202020
+      206966202828456967656E65536368756C655B27536368756C666F726D4B727A
+      275D203D202747592729206F722028456967656E65536368756C655B27536368
+      756C666F726D4B727A275D203D20274745272929207468656E0D0A2020202020
+      2020202020626567696E20200D0A202020202020202020202020696620536368
+      75656C65725B27415344536368756C666F726D275D203D202747593827207468
+      656E0D0A2020202020202020202020202020626567696E0D0A20202020202020
+      202020202020202020473839203A3D20274738273B0D0A202020202020202020
+      20202020202020696620466F6C6765477275707065203D202731302720746865
+      6E0D0A2020202020202020202020202020202020202020466F6C676547727570
+      7065203A3D20274546270D0A20202020202020202020202020202020656C7365
+      20696620466F6C6765477275707065203D2027313127207468656E0D0A202020
+      2020202020202020202020202020202020466F6C6765477275707065203A3D20
+      275131273B200D0A2020202020202020202020202020656E64200D0A20202020
+      2020202020202020656C73650D0A202020202020202020202020202062656769
+      6E0D0A20202020202020202020202020202020473839203A3D20274739273B0D
+      0A20202020202020202020202020202020696620466F6C676547727570706520
+      3D2027313127207468656E0D0A20202020202020202020202020202020202020
+      20466F6C6765477275707065203A3D20274546270D0A20202020202020202020
+      202020202020656C736520696620466F6C6765477275707065203D2027313227
+      207468656E0D0A2020202020202020202020202020202020202020466F6C6765
+      477275707065203A3D20275131273B200D0A2020202020202020202020202020
+      656E643B0D0A20202020202020202020656E643B0D0A20202020202020200D0A
+      20202020202020202F2F20496E2064656E2046C3A46C6C656E20562C2056502C
+      20465220756E6420626569206C656572656D205665727365747A756E67736569
+      6E7472616720776972642073746174742064657220466F6C6765737475666520
+      617563682064696520506172616C6C656C6974C3A474206D6974206175736765
+      676562656E2E200D0A20202020202020202F2F2056657277656E646520646168
+      65722064696520466F6C67656B6C617373652064657320536368C3BC6C657273
+      2061757320536368494C44206F686E652066C3BC6872656E6465204E756C6C2E
+      2044696520766F7268657220616C6C67656D65696E2065726D697474656C7465
+      7420466F6C6765677275707065207769726420646162656920C3BC6265727363
+      6872696562656E2E0D0A20202020202020202F2F204175736E61686D65207369
+      6E6420646965205665727365747A756E6720696E20646965204F626572737475
+      666520756E6420616E20646572204861757074736368756C6520626569206465
+      72205665727365747A756E6720696E20646965204B6C617373652031302C2077
+      6F206E61636820547970204120756E64204220756E746572736368696564656E
+      20776972642E0D0A0D0A202020202020202069662028284C65726E6162736368
+      6E697474655B275665727365747A756E674B727A275D203D2027562729206F72
+      20284C65726E61627363686E69747465205B275665727365747A756E674B727A
+      275D203D202756502729206F7220284C65726E61627363686E69747465205B27
+      5665727365747A756E674B727A275D203D202746522729206F7220284C65726E
+      61627363686E69747465205B275665727365747A756E674B727A275D203D2027
+      272929207468656E0D0A20202020202020202020626567696E0D0A2020202020
+      20202020202F2F20426569205665727365747A756E6720696E20646965204F62
+      6572737475666520626C656962742064696520466F6C67656772757070652075
+      6E766572C3A46E646572740D0A20202020202020202020696620706F7328466F
+      6C67654772757070652C272D2D45462D2D51312D2D2729203D2030207468656E
+      0D0A202020202020202020202020626567696E0D0A2020202020202020202020
+      2020202F2F20416C6C6520536368756C656E206F686E6520485320696E204B6C
+      617373652031300D0A20202020202020202020202020206966206E6F74202828
+      28456967656E65536368756C655B27536368756C666F726D4B727A275D203D20
+      27482729206F7220284C65726E61627363686E697474655B2741534453636875
+      6C676C6965646572756E67275D203D20274827292920616E642028466F6C6765
+      477275707065203D20273130272929207468656E0D0A20202020202020202020
+      202020202020466F6C6765477275707065203A3D206F664E284C65726E616273
+      63686E697474655B27466F6C67656B6C61737365275D2920202020202020200D
+      0A2020202020202020202020202020656C7365200D0A20202020202020202020
+      2020202020202F2F20416E20646572204861757074736368756C6520627A772E
+      206265692065696E656D20536368C3BC6C657220696E2048532D476C69656465
+      72756E67206D7573732062656920646572205665727365747A756E6720696E20
+      646965204B6C6173736520313020626569206A6564656D20536368C3BC6C6572
+      207A7769736368656E20547970204120756E6420547970204220756E74657273
+      6368696564656E2077657264656E2E0D0A202020202020202020202020202020
+      20626567696E0D0A20202020202020202020202020202020202069662028506F
+      732827313041272C204C65726E61627363686E697474655B2741627363686C75
+      7373275D29203E203029207468656E0D0A202020202020202020202020202020
+      2020202020466F6C6765477275707065203A3D20466F6C676547727570706520
+      2B20272C2054797020412C270D0A202020202020202020202020202020202020
+      656C7365200D0A2020202020202020202020202020202020202020466F6C6765
+      477275707065203A3D20466F6C6765477275707065202B20272C205479702042
+      2C273B0D0A20202020202020202020202020202020656E643B0D0A2020202020
+      20202020202020656E643B20202020202020200D0A2020202020202020202065
+      6E643B202020202020200D0A202020202020202020200D0A2020202020202020
+      2F2F204E69636874207665727365747A74206F646572204E6963687420766572
+      7365747A74206D6974204E6163687072C3BC66756E67736DC3B6676C6963686B
+      656974206F6465722041627363686C7573732062656EC3B6746967656E206569
+      6E20226E696368742220696D20546578740D0A0D0A2020202020202020696620
+      28284C65726E61627363686E697474655B275665727365747A756E674B727A27
+      5D203D20274E2729206F7220284C65726E61627363686E69747465205B275665
+      727365747A756E674B727A275D203D20274E502729206F7220284C65726E6162
+      7363686E69747465205B275665727365747A756E674B727A275D203D20274127
+      2929207468656E0D0A202020202020202020204E69636874203A3D20276E6963
+      687420270D0A2020202020202020656C7365200D0A202020202020202020204E
+      69636874203A3D2027273B200D0A20200D0A20202020202020202F2F20232323
+      20546578742066C3BC722064656E205665727365747A756E677362657363686C
+      7573732062696C64656E20232323232323232323232323232323232323232323
       2323232323232323232323232323232323232323232323232323232323232323
       2323232323232323232323232323232323232323232323232323232323232323
-      2323232323232323232323200D0A0D0A20202020202020206966204C65726E61
-      627363686E69747465205B275665727365747A756E674B727A275D203C3E2027
-      565027207468656E0D0A202020202020202020202F2F20416C6C652056657273
-      65747A756E67736BC3BC727A656C206175C39F6572205665727365747A756E67
-      206175662050726F626520285650290D0A20202020202020202020626567696E
-      0D0A202020202020202020202020696620416B7475656C6C655374756665203E
-      3D205665727365747A756E6741625374756665207468656E0D0A202020202020
-      202020202020202054657874203A3D205A6575676E6973566F726E616D654472
-      75636B202B202720776972642027202B204E69636874202B2027696E20646965
-      204B6C617373652027202B20466F6C6765477275707065202B20272076657273
-      65747A742E270D0A202020202020202020202020656C73650D0A202020202020
-      202020202020202054657874203A3D205A6575676E6973566F726E616D654472
-      75636B202B202720676568742027202B204E69636874202B2027696E20646965
-      204B6C617373652027202B20466F6C6765477275707065202B202720C3BC6265
-      722E273B0D0A20202020202020202020202020200D0A20202020202020202020
-      2020696620466F6C6765477275707065203D2027454627207468656E200D0A20
+      23232323232323232323232323200D0A0D0A20202020202020206966204C6572
+      6E61627363686E69747465205B275665727365747A756E674B727A275D203C3E
+      2027565027207468656E0D0A202020202020202020202F2F20416C6C65205665
+      727365747A756E67736BC3BC727A656C206175C39F6572205665727365747A75
+      6E67206175662050726F626520285650290D0A20202020202020202020626567
+      696E0D0A202020202020202020202020696620416B7475656C6C655374756665
+      203E3D205665727365747A756E6741625374756665207468656E0D0A20202020
+      2020202020202020202054657874203A3D205A6575676E6973566F726E616D65
+      447275636B202B202720776972642027202B204E69636874202B2027696E2064
+      6965204B6C617373652027202B20466F6C6765477275707065202B2027207665
+      727365747A742E270D0A202020202020202020202020656C73650D0A20202020
+      2020202020202020202054657874203A3D205A6575676E6973566F726E616D65
+      447275636B202B202720676568742027202B204E69636874202B2027696E2064
+      6965204B6C617373652027202B20466F6C6765477275707065202B202720C3BC
+      6265722E273B0D0A20202020202020202020202020200D0A2020202020202020
+      20202020696620466F6C6765477275707065203D2027454627207468656E200D
+      0A202020202020202020202020202054657874203A3D205A6575676E6973566F
+      726E616D65447275636B202B202720776972642027202B204E69636874202B20
+      27696E206469652045696E66C3BC6872756E6773706861736520646573204269
+      6C64756E677367616E67732027202B20473839202B2027207665727365747A74
+      270D0A202020202020202020202020656C736520696620466F6C676547727570
+      7065203D2027513127207468656E200D0A202020202020202020202020202054
+      657874203A3D205A6575676E6973566F726E616D65447275636B202B20272077
+      6972642027202B204E69636874202B2027696E20646173206572737465204A61
+      687220646572205175616C6966696B6174696F6E737068617365206465732042
+      696C64756E677367616E67732027202B20473839202B2027207665727365747A
+      74273B0D0A20200D0A2020202020202020202020206966202828466F6C676547
+      7275707065203D202745462729206F722028466F6C6765477275707065203D20
+      275131272929207468656E0D0A2020202020202020202020202020626567696E
+      202020202020202020200D0A2020202020202020202020202020202069662028
+      4E69636874203D20272729207468656E0D0A2020202020202020202020202020
+      2020202054657874203A3D2054657874202B202720756E64206861742064616D
+      69742064696520426572656368746967756E67207A756D204265737563682064
+      65722067796D6E617369616C656E204F6265727374756665206572776F726265
+      6E2E27200D0A20202020202020202020202020202020656C73650D0A20202020
+      202020202020202020202020202054657874203A3D2054657874202B20272E27
+      3B0D0A2020202020202020202020202020656E643B20200D0A20202020202020
+      202020656E640D0A2020202020202020656C73650D0A20202020202020202020
+      2F2F205665727365747A756E67206175662050726F62650D0A20202020202020
+      202020626567696E0D0A202020202020202020202020696620416B7475656C6C
+      655374756665203E3D205665727365747A756E6741625374756665207468656E
+      0D0A202020202020202020202020202054657874203A3D205A6575676E697356
+      6F726E616D65447275636B202B2027207769726420696E20646965204B6C6173
+      73652027202B20466F6C6765477275707065202B2027206175662050726F6265
+      207665727365747A742E270D0A202020202020202020202020656C73650D0A20
       2020202020202020202020202054657874203A3D205A6575676E6973566F726E
-      616D65447275636B202B202720776972642027202B204E69636874202B202769
-      6E206469652045696E66C3BC6872756E67737068617365206465732042696C64
-      756E677367616E67732027202B20473839202B2027207665727365747A74270D
-      0A202020202020202020202020656C736520696620466F6C6765477275707065
-      203D2027513127207468656E200D0A2020202020202020202020202020546578
-      74203A3D205A6575676E6973566F726E616D65447275636B202B202720776972
-      642027202B204E69636874202B2027696E20646173206572737465204A616872
-      20646572205175616C6966696B6174696F6E737068617365206465732042696C
-      64756E677367616E67732027202B20473839202B2027207665727365747A7427
-      3B0D0A20200D0A2020202020202020202020206966202828466F6C6765477275
-      707065203D202745462729206F722028466F6C6765477275707065203D202751
-      31272929207468656E0D0A2020202020202020202020202020626567696E2020
-      20202020202020200D0A20202020202020202020202020202020696620284E69
-      636874203D20272729207468656E0D0A20202020202020202020202020202020
-      202054657874203A3D2054657874202B202720756E64206861742064616D6974
-      2064696520426572656368746967756E67207A756D2042657375636820646572
-      2067796D6E617369616C656E204F6265727374756665206572776F7262656E2E
-      27200D0A20202020202020202020202020202020656C73650D0A202020202020
-      20202020202020202020202054657874203A3D2054657874202B20272E273B0D
-      0A2020202020202020202020202020656E643B20200D0A202020202020202020
-      20656E640D0A2020202020202020656C73650D0A202020202020202020202F2F
-      205665727365747A756E67206175662050726F62650D0A202020202020202020
-      20626567696E0D0A202020202020202020202020696620416B7475656C6C6553
-      74756665203E3D205665727365747A756E6741625374756665207468656E0D0A
-      202020202020202020202020202054657874203A3D205A6575676E6973566F72
-      6E616D65447275636B202B2027207769726420696E20646965204B6C61737365
-      2027202B20466F6C6765477275707065202B2027206175662050726F62652076
-      65727365747A742E270D0A202020202020202020202020656C73650D0A202020
-      202020202020202020202054657874203A3D205A6575676E6973566F726E616D
-      65447275636B202B2027206765687420696E20646965204B6C61737365202720
-      2B20466F6C6765477275707065202B2027206175662050726F626520C3BC6265
-      722E273B0D0A20202020202020202020656E643B0D0A202020202020656E643B
-      0D0A202020200D0A20202020526573756C74203A3D20546578743B0D0A656E64
-      3B0D0A084361726574506F730102280261000001060F5472614576656E744861
-      6E646C65720B50726F6772616D4E616D6506115265706F72744265666F726550
-      72696E740B50726F6772616D54797065070B747450726F63656475726506536F
-      7572636506E970726F636564757265205265706F72744265666F72655072696E
-      743B0D0A626567696E0D0A2020536368756C666F726D203A3D20274861757074
-      736368756C65273B0D0A2020536368756C6F7274203A3D20456967656E655363
-      68756C655B274F7274275D3B0D0A2020536368756C666F726D41203A3D202764
-      69652027202B20536368756C666F726D3B0D0A2020536368756C666F726D4720
-      3A3D20276465722027202B20536368756C666F726D3B0D0A202045535F416E7A
-      4162203A3D20456967656E65536368756C655B27416E7A61686C41627363686E
-      69747465275D3B0D0A656E643B0D0A0D436F6D706F6E656E744E616D65060652
-      65706F7274094576656E744E616D65060B4265666F72655072696E7407457665
-      6E7449440201084361726574506F730102010201000001060F5472614576656E
-      7448616E646C65720B50726F6772616D4E616D65061144657461696C4265666F
-      72655072696E740B50726F6772616D54797065070B747450726F636564757265
-      06536F757263650C2E01000070726F6365647572652044657461696C4265666F
-      72655072696E743B0D0A626567696E0D0A20204E657565566F726C616765203A
-      3D2028284C65726E61627363686E697474655B274A616872275D2D537472546F
-      496E74284C65726E61627363686E697474655B274153444A61687267616E6727
-      5D29203E3D2032303135293B0D0A20204E657565566F726C6167654162323032
-      31203A3D2028284C65726E61627363686E697474655B274A616872275D2D5374
-      72546F496E74284C65726E61627363686E697474655B274153444A6168726761
-      6E67275D29203E3D2032303136293B200D0A20204E65756541627363686C7573
-      7342657A656963686E756E67203A3D20284C65726E61627363686E697474655B
-      274A616872275D203E3D203230323229203B0D0A656E643B0D0A0D436F6D706F
-      6E656E744E616D65060644657461696C094576656E744E616D65060B4265666F
-      72655072696E74074576656E7449440218084361726574506F73010201020100
-      0000}
+      616D65447275636B202B2027206765687420696E20646965204B6C6173736520
+      27202B20466F6C6765477275707065202B2027206175662050726F626520C3BC
+      6265722E273B0D0A20202020202020202020656E643B0D0A202020202020656E
+      643B0D0A202020200D0A20202020526573756C74203A3D20546578743B0D0A65
+      6E643B0D0A084361726574506F730102280261000001060F5472614576656E74
+      48616E646C65720B50726F6772616D4E616D6506115265706F72744265666F72
+      655072696E740B50726F6772616D54797065070B747450726F63656475726506
+      536F7572636506E970726F636564757265205265706F72744265666F72655072
+      696E743B0D0A626567696E0D0A2020536368756C666F726D203A3D2027486175
+      7074736368756C65273B0D0A2020536368756C6F7274203A3D20456967656E65
+      536368756C655B274F7274275D3B0D0A2020536368756C666F726D41203A3D20
+      276469652027202B20536368756C666F726D3B0D0A2020536368756C666F726D
+      47203A3D20276465722027202B20536368756C666F726D3B0D0A202045535F41
+      6E7A4162203A3D20456967656E65536368756C655B27416E7A61686C41627363
+      686E69747465275D3B0D0A656E643B0D0A0D436F6D706F6E656E744E616D6506
+      065265706F7274094576656E744E616D65060B4265666F72655072696E740745
+      76656E7449440201084361726574506F730102010201000001060F5472614576
+      656E7448616E646C65720B50726F6772616D4E616D65061144657461696C4265
+      666F72655072696E740B50726F6772616D54797065070B747450726F63656475
+      726506536F757263650C2E01000070726F6365647572652044657461696C4265
+      666F72655072696E743B0D0A626567696E0D0A20204E657565566F726C616765
+      203A3D2028284C65726E61627363686E697474655B274A616872275D2D537472
+      546F496E74284C65726E61627363686E697474655B274153444A61687267616E
+      67275D29203E3D2032303135293B0D0A20204E657565566F726C616765416232
+      303231203A3D2028284C65726E61627363686E697474655B274A616872275D2D
+      537472546F496E74284C65726E61627363686E697474655B274153444A616872
+      67616E67275D29203E3D2032303136293B200D0A20204E65756541627363686C
+      75737342657A656963686E756E67203A3D20284C65726E61627363686E697474
+      655B274A616872275D203E3D203230323229203B0D0A656E643B0D0A0D436F6D
+      706F6E656E744E616D65060644657461696C094576656E744E616D65060B4265
+      666F72655072696E74074576656E7449440218084361726574506F7301020102
+      01000000}
   end
   object ppDesignLayers1: TppDesignLayers
     object ppDesignLayer1: TppDesignLayer
